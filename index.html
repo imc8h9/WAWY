@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>نحن معك</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="brand-mini" aria-hidden="true">•</div>
+    <div class="lang">
+      <button id="lang-ar" class="chip is-active" type="button">العربية</button>
+      <button id="lang-en" class="chip" type="button">English</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- PAGE 1: LANDING -->
+    <section id="page-landing" class="page is-active" role="region" aria-label="Landing">
+      <div class="card hero">
+        <div class="logoMark" aria-hidden="true">
+          <div class="pulse"></div>
+          <div class="heart"></div>
+        </div>
+
+        <h1 class="title" data-i18n="appName">نحن معك</h1>
+        <p class="subtitle" data-i18n="tagline">
+          مساحة آمنة وسرّية لتبدأ الخطوة الأولى.
+        </p>
+
+        <div class="actions">
+          <button id="btn-start" class="btn primary" type="button" data-i18n="start">ابدأ</button>
+        </div>
+
+        <p class="micro" data-i18n="microLanding">
+          لا نطلب اسمك. لا نعرض هويتك. أنت بأمان.
+        </p>
+      </div>
+    </section>
+
+    <!-- PAGE 2: CHOOSE -->
+    <section id="page-choose" class="page" role="region" aria-label="Choose">
+      <div class="card wide">
+        <div class="privacyNote">
+          <span class="dot"></span>
+          <span data-i18n="privacyNote">خصوصيتك أولًا: لا نعرض هويتك ولا نشارك بياناتك دون إذن.</span>
+        </div>
+
+        <h2 class="h2" data-i18n="chooseTitle">اختر طريقة الدعم</h2>
+        <p class="p" data-i18n="chooseDesc">
+          ابدأ بالطريقة التي تشعرك بالراحة — ويمكنك التبديل في أي وقت.
+        </p>
+
+        <div class="grid2">
+          <button id="btn-ai" class="choice" type="button">
+            <div class="choiceIcon" aria-hidden="true">🤖</div>
+            <div class="choiceText">
+              <div class="choiceTitle" data-i18n="aiTitle">التواصل مع الذكاء الاصطناعي</div>
+              <div class="choiceSub" data-i18n="aiSub">دعم مبدئي + أسئلة تساعدك توضّح شعورك</div>
+            </div>
+          </button>
+
+          <button id="btn-doc" class="choice" type="button">
+            <div class="choiceIcon" aria-hidden="true">🩺</div>
+            <div class="choiceText">
+              <div class="choiceTitle" data-i18n="docTitle">التواصل مع دكتور حقيقي</div>
+              <div class="choiceSub" data-i18n="docSub">نموذج اتصال للعرض (بدون مكالمة حقيقية)</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="actions row">
+          <button class="btn ghost" type="button" id="back-to-landing" data-i18n="back">رجوع</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: AI CHAT -->
+    <section id="page-chat" class="page" role="region" aria-label="AI Chat">
+      <div class="card chat">
+        <div class="chatHeader">
+          <button class="iconBtn" id="back-to-choose-from-chat" type="button" aria-label="Back">←</button>
+          <div class="chatTitle">
+            <div class="chatTitleMain" data-i18n="chatTitle">محادثة مع الذكاء الاصطناعي</div>
+            <div class="chatTitleSub" data-i18n="chatSub">سري • داعم • بسيط</div>
+          </div>
+          <div class="statusPill" id="chat-status" aria-hidden="true">
+            <span class="statusDot"></span><span data-i18n="online">متصل</span>
+          </div>
+        </div>
+
+        <div id="chat-window" class="chatWindow" aria-live="polite"></div>
+
+        <div class="chatFooter">
+          <div class="disclaimer" data-i18n="disclaimer">
+            هذه نسخة أولية وليست بديلاً عن التشخيص الطبي.
+          </div>
+
+          <div class="inputRow">
+            <input id="chat-input" class="input" type="text" data-i18n-placeholder="chatPlaceholder" placeholder="اكتب هنا..." />
+            <button id="chat-send" class="btn primary small" type="button" data-i18n="send">إرسال</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: DOCTOR CALL (PROTOTYPE) -->
+    <section id="page-call" class="page" role="region" aria-label="Doctor Call">
+      <div class="card call">
+        <div class="callHeader">
+          <button class="iconBtn" id="back-to-choose-from-call" type="button" aria-label="Back">←</button>
+          <div>
+            <div class="callTitle" data-i18n="callTitle">اتصال مع دكتور (نموذج أولي)</div>
+            <div class="callSub" id="call-status" data-i18n="connecting">جارٍ الاتصال...</div>
+          </div>
+        </div>
+
+        <div class="callStage">
+          <div class="avatar" aria-hidden="true">👨‍⚕️</div>
+          <div class="connectMsg" id="call-msg" data-i18n="connectingMsg">جاري ربطك بمختص...</div>
+        </div>
+
+        <div class="callControls" aria-hidden="true">
+          <div class="control">🎤</div>
+          <div class="control">📷</div>
+          <button id="end-call" class="control end" type="button">⛔</button>
+        </div>
+
+        <div class="actions row">
+          <button class="btn ghost" type="button" id="back-to-choose" data-i18n="backToChoose">العودة للاختيار</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
