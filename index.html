@@ -1,2585 +1,442 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نحن معك | Nahnu Ma'ak - Privacy-First Mental Health Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>نحن معك | Nahnu Ma’ak</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            /* Color System - Premium Healthcare Palette */
-            --primary-900: #312e81;
-            --primary-800: #3730a3;
-            --primary-700: #4338ca;
-            --primary-600: #4f46e5;
-            --primary-500: #6366f1;
-            --primary-400: #818cf8;
-            --primary-300: #a5b4fc;
-            --primary-200: #c7d2fe;
-            --primary-100: #e0e7ff;
+            /* Comforting Palette */
+            --primary-700: #5b69e3;
+            --primary-500: #7c89ff; /* Soft Periwinkle */
+            --primary-100: #eef1ff;
             
-            --secondary-900: #1e3a8a;
-            --secondary-800: #1e40af;
-            --secondary-700: #1d4ed8;
-            --secondary-600: #2563eb;
-            --secondary-500: #3b82f6;
-            --secondary-400: #60a5fa;
-            --secondary-300: #93c5fd;
-            --secondary-200: #bfdbfe;
-            --secondary-100: #dbeafe;
+            --secondary-500: #4ecdc4; /* Soft Mint/Teal */
+            --accent-500: #ff9a9e;    /* Warm Peach/Pink */
             
-            --accent-700: #be185d;
-            --accent-600: #db2777;
-            --accent-500: #ec4899;
-            --accent-400: #f472b6;
-            --accent-300: #f9a8d4;
-            --accent-200: #fbcfe8;
-            --accent-100: #fce7f3;
+            --neutral-900: #2d3436;
+            --neutral-700: #636e72;
+            --neutral-100: #f1f2f6;
+            --neutral-50: #ffffff;
             
-            --neutral-900: #0f172a;
-            --neutral-800: #1e293b;
-            --neutral-700: #334155;
-            --neutral-600: #475569;
-            --neutral-500: #64748b;
-            --neutral-400: #94a3b8;
-            --neutral-300: #cbd5e1;
-            --neutral-200: #e2e8f0;
-            --neutral-100: #f1f5f9;
-            --neutral-50: #f8fafc;
+            --success: #6ab04c;
+            --danger: #eb4d4b;
             
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.4);
             
-            /* Typography Scale */
-            --h1: 3.5rem;
-            --h2: 2.5rem;
-            --h3: 1.75rem;
-            --h4: 1.25rem;
-            --body: 1rem;
-            --small: 0.875rem;
-            --caption: 0.75rem;
-            
-            /* Spacing */
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-            
-            /* Border Radius */
-            --radius-sm: 0.375rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            --radius-full: 9999px;
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            
-            /* Transitions */
-            --transition-fast: 150ms ease;
-            --transition-base: 250ms ease;
-            --transition-slow: 350ms ease;
-            
-            /* Z-index layers */
-            --z-modal: 1000;
-            --z-toast: 1100;
-            --z-nav: 100;
-            
-            /* Current language for RTL/LTR */
-            --direction: ltr;
+            --h1: clamp(2.2rem, 5vw, 3rem);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* RTL Support */
-        [dir="rtl"] {
-            --direction: rtl;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-        [dir="ltr"] {
-            --direction: ltr;
-        }
-
-        /* Base Styles */
         body {
-            font-family: 'Inter', 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, 
-                rgba(49, 46, 129, 0.05) 0%, 
-                rgba(30, 58, 138, 0.05) 25%, 
-                rgba(190, 24, 93, 0.03) 50%, 
-                rgba(49, 46, 129, 0.05) 75%, 
-                rgba(30, 58, 138, 0.05) 100%);
-            color: var(--neutral-800);
+            font-family: 'Tajawal', 'Inter', sans-serif;
+            background: #f0f4f8;
+            color: var(--neutral-900);
             min-height: 100vh;
             overflow-x: hidden;
-            direction: var(--direction);
+            line-height: 1.6;
         }
 
-        body:lang(ar) {
-            font-family: 'Tajawal', 'Inter', sans-serif;
-        }
-
-        /* Premium Background with Effects */
-        body::before {
-            content: '';
+        /* --- Comforting Background (Animated) --- */
+        .bg-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 40%);
-            z-index: -3;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-            opacity: 0.3;
+            inset: 0;
             z-index: -2;
-            pointer-events: none;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            overflow: hidden;
         }
 
-        /* Vignette Effect */
-        .app-container::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 40%, rgba(15, 23, 42, 0.1) 100%);
-            z-index: -1;
-            pointer-events: none;
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: breathe 15s infinite alternate ease-in-out;
         }
 
-        /* App Container */
-        .app-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+        .blob-1 { width: 500px; height: 500px; background: #a1c4fd; top: -100px; left: -100px; }
+        .blob-2 { width: 600px; height: 600px; background: #ffecd2; bottom: -150px; right: -100px; animation-delay: -2s; }
+        .blob-3 { width: 400px; height: 400px; background: #d4fc79; top: 40%; left: 30%; animation-delay: -5s; }
+
+        @keyframes breathe {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(30px, 40px); }
         }
 
-        /* Top Navigation */
-        .top-nav {
-            position: sticky;
-            top: 0;
-            z-index: var(--z-nav);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: var(--shadow-sm);
-            padding: var(--space-md) var(--space-lg);
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: -1; opacity: 0.03; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .nav-content {
+        /* --- Layout --- */
+        .app-shell { max-width: 900px; margin: 0 auto; padding: 0 24px; min-height: 100vh; }
+
+        .top-bar {
+            padding: 24px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 980px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: baseline;
-            gap: var(--space-sm);
+            z-index: 100;
         }
 
         .logo {
-            font-size: var(--h3);
-            font-weight: 700;
-            color: var(--primary-700);
-            background: linear-gradient(135deg, var(--primary-600), var(--accent-500));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-subtitle {
-            font-size: var(--caption);
-            color: var(--neutral-500);
-            font-weight: 500;
-            display: none;
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-        }
-
-        .privacy-badge {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            padding: var(--space-xs) var(--space-sm);
-            background: var(--primary-100);
-            border-radius: var(--radius-full);
-            color: var(--primary-700);
-            font-size: var(--caption);
-            font-weight: 500;
-        }
-
-        .language-toggle {
-            display: flex;
-            background: var(--neutral-100);
-            border-radius: var(--radius-full);
-            padding: 0.25rem;
-        }
-
-        .lang-btn {
-            padding: var(--space-xs) var(--space-md);
-            border: none;
-            background: transparent;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-size: var(--small);
-            color: var(--neutral-600);
-        }
-
-        .lang-btn.active {
-            background: white;
-            color: var(--primary-700);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Page Transitions */
-        .page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(20px);
-            transition: all var(--transition-base);
-            overflow-y: auto;
-            padding: var(--space-lg);
-        }
-
-        .page.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        /* Page A: Landing */
-        .landing-container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: var(--space-3xl) var(--space-lg);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 80px);
-        }
-
-        .landing-hero {
-            margin-bottom: var(--space-3xl);
-        }
-
-        .hero-title {
-            font-size: var(--h1);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: var(--space-lg);
-            color: var(--neutral-900);
-            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: var(--h4);
-            color: var(--neutral-600);
-            margin-bottom: var(--space-2xl);
-            font-weight: 400;
-        }
-
-        .trust-strip {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-lg);
-            flex-wrap: wrap;
-            margin-top: var(--space-2xl);
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            padding: var(--space-sm) var(--space-lg);
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-full);
-            border: 1px solid var(--neutral-200);
-            color: var(--neutral-700);
-            font-weight: 500;
-            box-shadow: var(--shadow-sm);
-            transition: transform var(--transition-base);
-        }
-
-        .trust-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .landing-actions {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-            align-items: center;
-            margin-bottom: var(--space-3xl);
-        }
-
-        .scroll-hint {
-            color: var(--neutral-400);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Page B: Privacy + Choose */
-        .choose-container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: var(--space-xl) 0;
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            background: transparent;
-            border: none;
-            color: var(--neutral-600);
-            font-weight: 500;
-            cursor: pointer;
-            padding: var(--space-sm) 0;
-            margin-bottom: var(--space-xl);
-            transition: color var(--transition-fast);
-        }
-
-        .btn-back:hover {
-            color: var(--primary-600);
-        }
-
-        .privacy-panel {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-2xl);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .privacy-header {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-md);
-        }
-
-        .privacy-header i {
-            font-size: 1.5rem;
-            color: var(--primary-600);
-        }
-
-        .privacy-header h3 {
-            font-size: var(--h4);
-            color: var(--neutral-800);
-            font-weight: 600;
-        }
-
-        .privacy-subtitle {
-            color: var(--neutral-600);
-            font-size: var(--body);
-            line-height: 1.6;
-        }
-
-        .section-title {
-            font-size: var(--h2);
-            font-weight: 700;
-            color: var(--neutral-900);
-            margin-bottom: var(--space-xl);
-            text-align: center;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-xl);
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .cards-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Selection Cards */
-        .selection-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-xl);
-            padding: var(--space-2xl);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition-base);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .selection-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
-        }
-
-        .selection-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            color: var(--primary-600);
-            margin-bottom: var(--space-lg);
-        }
-
-        .card-title {
-            font-size: var(--h3);
-            font-weight: 700;
-            color: var(--neutral-900);
-            margin-bottom: var(--space-sm);
-        }
-
-        .card-subtitle {
-            color: var(--neutral-600);
-            margin-bottom: var(--space-xl);
-            line-height: 1.6;
-            flex: 1;
-        }
-
-        .card-features {
-            margin-bottom: var(--space-xl);
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-md);
-            color: var(--neutral-700);
-        }
-
-        .feature i {
-            color: var(--primary-500);
-        }
-
-        .card-action {
-            margin-top: auto;
-        }
-
-        /* Page C: AI Chat */
-        .chat-container {
-            max-width: 980px;
-            margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-xl);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-        }
-
-        .chat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-lg);
-            border-bottom: 1px solid var(--neutral-200);
-            background: white;
-        }
-
-        .chat-header-info {
-            flex: 1;
-            text-align: center;
-        }
-
-        .chat-title {
-            font-size: var(--h4);
-            font-weight: 600;
-            color: var(--neutral-900);
-            margin-bottom: var(--space-xs);
-        }
-
-        .status-chips {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
-        }
-
-        .status-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-full);
-            font-size: var(--caption);
-            font-weight: 500;
-        }
-
-        .status-chip.anonymous {
-            background: var(--primary-100);
-            color: var(--primary-700);
-        }
-
-        .status-chip.online {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-
-        .online-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .chat-header-actions {
-            display: flex;
-            gap: var(--space-sm);
-        }
-
-        .btn-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--neutral-200);
-            background: white;
-            color: var(--neutral-600);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-fast);
-        }
-
-        .btn-icon:hover {
-            background: var(--neutral-100);
-            color: var(--neutral-800);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: var(--space-xl);
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
-            min-height: 400px;
-        }
-
-        .message {
-            display: flex;
-            gap: var(--space-md);
-            max-width: 80%;
-            animation: fadeIn var(--transition-base);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.user-message {
-            margin-left: auto;
-            flex-direction: row-reverse;
-        }
-
-        .message-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-full);
-            background: var(--primary-100);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-600);
-            flex-shrink: 0;
-        }
-
-        .user-message .message-avatar {
-            background: var(--secondary-100);
-            color: var(--secondary-600);
-        }
-
-        .message-content {
-            background: var(--neutral-100);
-            padding: var(--space-md) var(--space-lg);
-            border-radius: var(--radius-lg);
-            position: relative;
-        }
-
-        .user-message .message-content {
-            background: var(--primary-100);
-            color: var(--neutral-900);
-        }
-
-        .message-time {
-            font-size: var(--caption);
-            color: var(--neutral-500);
-            margin-top: var(--space-xs);
-            text-align: right;
-        }
-
-        /* Typing Indicator */
-        .typing-indicator {
-            display: flex;
-            gap: 4px;
-            padding: var(--space-md);
-        }
-
-        .typing-indicator span {
-            width: 8px;
-            height: 8px;
-            background: var(--neutral-400);
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-indicator span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-indicator span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .chat-input-container {
-            padding: var(--space-lg);
-            border-top: 1px solid var(--neutral-200);
-            background: white;
-        }
-
-        .chat-input-wrapper {
-            display: flex;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: var(--space-md) var(--space-lg);
-            border: 1px solid var(--neutral-300);
-            border-radius: var(--radius-full);
-            font-size: var(--body);
-            transition: all var(--transition-fast);
-            background: var(--neutral-50);
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary-500);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .btn-send {
-            width: 50px;
-            height: 50px;
-            border-radius: var(--radius-full);
-            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform var(--transition-fast);
-        }
-
-        .btn-send:hover {
-            transform: scale(1.05);
-        }
-
-        .chat-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--space-md);
-        }
-
-        .chat-disclaimer {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-sm);
-            color: var(--neutral-600);
-            font-size: var(--small);
-            max-width: 400px;
-        }
-
-        .chat-disclaimer i {
-            color: var(--warning);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* Page D: Call Prototype */
-        .call-container {
-            max-width: 980px;
-            margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            background: var(--neutral-900);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-        }
-
-        .call-header {
-            display: flex;
-            align-items: center;
-            padding: var(--space-lg);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .call-header-info {
-            flex: 1;
-            text-align: center;
-        }
-
-        .call-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            color: white;
-            margin-bottom: var(--space-xs);
-        }
-
-        .call-title i {
-            color: var(--primary-400);
-        }
-
-        .call-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            color: var(--neutral-300);
-        }
-
-        .connecting-dots {
-            display: flex;
-            gap: 4px;
-        }
-
-        .connecting-dots span {
-            width: 8px;
-            height: 8px;
-            background: var(--primary-400);
-            border-radius: 50%;
-            animation: connecting 1.4s infinite;
-        }
-
-        .connecting-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .connecting-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes connecting {
-            0%, 60%, 100% {
-                opacity: 0.3;
-                transform: scale(0.8);
-            }
-            30% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-
-        .call-stage {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-xl);
-            background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
-        }
-
-        .video-tile {
-            width: 100%;
-            max-width: 700px;
-            aspect-ratio: 16/9;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-lg);
-            color: white;
-        }
-
-        .specialist-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .specialist-info {
-            text-align: center;
-        }
-
-        .specialist-info h3 {
-            font-size: var(--h4);
-            margin-bottom: var(--space-xs);
-            color: white;
-        }
-
-        .specialist-info p {
-            color: var(--neutral-300);
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-xl);
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-base);
-        }
-
-        .video-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .no-specialist-message {
-            text-align: center;
-            color: white;
-            max-width: 500px;
-        }
-
-        .no-specialist-message i {
-            font-size: 3rem;
-            color: var(--accent-400);
-            margin-bottom: var(--space-lg);
-        }
-
-        .no-specialist-message h3 {
-            font-size: var(--h3);
-            margin-bottom: var(--space-md);
-            color: white;
-        }
-
-        .no-specialist-message p {
-            color: var(--neutral-300);
-            margin-bottom: var(--space-xl);
-        }
-
-        .call-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-lg);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .control-group {
-            display: flex;
-            gap: var(--space-md);
-        }
-
-        .call-control-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xs);
-            padding: var(--space-md);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-lg);
-            color: white;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            min-width: 80px;
-        }
-
-        .call-control-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .call-control-btn.destructive {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-
-        .call-control-btn.destructive:hover {
-            background: rgba(239, 68, 68, 0.3);
-        }
-
-        .call-control-btn i {
-            font-size: 1.25rem;
-        }
-
-        .call-control-btn span {
-            font-size: var(--small);
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-            padding: var(--space-md) var(--space-xl);
-            border: none;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: var(--body);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            min-height: 44px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%, -50%);
-            transform-origin: 50% 50%;
-        }
-
-        .btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
-            }
-        }
-
-        .btn:active {
-            transform: scale(0.98);
+            font-weight: 700; font-size: 1.5rem; color: var(--primary-700);
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .logo::before {
+            content: ""; width: 12px; height: 12px; background: var(--secondary-500); border-radius: 50%;
+            box-shadow: 0 0 15px var(--secondary-500);
+        }
+
+        /* --- Views --- */
+        .view { display: none; padding: 40px 0; animation: softFade 0.8s ease; }
+        .view.active { display: block; }
+        @keyframes softFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Components --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-            color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+            color: white; border: none; padding: 18px 36px; border-radius: 20px;
+            font-weight: 600; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(91, 105, 227, 0.2);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(91, 105, 227, 0.3); }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-700);
-            border: 1px solid var(--primary-200);
+            background: white; color: var(--neutral-700); border: 1px solid #e1e1e1;
+            padding: 18px 36px; border-radius: 20px; cursor: pointer; transition: var(--transition);
         }
 
-        .btn-secondary:hover {
-            background: white;
-            border-color: var(--primary-300);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+        .status-pill {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 16px; border-radius: 100px; font-size: 0.85rem;
+            color: var(--secondary-500); font-weight: 600; border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .btn-ghost {
-            background: transparent;
-            color: var(--primary-600);
+        /* --- Page A: Landing --- */
+        .hero { text-align: center; padding: 60px 0; }
+        .hero h1 { font-size: var(--h1); margin-bottom: 24px; color: var(--neutral-900); }
+        .hero p { max-width: 580px; margin: 0 auto 40px; color: var(--neutral-700); font-size: 1.2rem; }
+
+        .trust-badges { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+        .badge { background: white; padding: 10px 20px; border-radius: 50px; font-size: 0.9rem; border: 1px solid #f0f0f0; }
+
+        /* --- Selection Cards --- */
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
+        .option-card {
+            cursor: pointer; transition: var(--transition); text-align: start;
+        }
+        .option-card:hover { transform: translateY(-10px); background: white; border-color: var(--primary-500); }
+        .card-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+
+        /* --- Chat UI --- */
+        .chat-box { height: 50vh; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 20px; }
+        .msg { max-width: 75%; padding: 16px 22px; border-radius: 24px; font-size: 1rem; }
+        .msg.ai { align-self: flex-start; background: white; border-bottom-right-radius: 5px; color: var(--neutral-900); }
+        .msg.user { align-self: flex-end; background: var(--primary-500); color: white; border-bottom-left-radius: 5px; }
+
+        .chat-input-area { display: flex; gap: 12px; margin-top: 20px; }
+        .chat-input-area input {
+            flex: 1; border: none; padding: 18px; border-radius: 20px; background: white; outline: none; box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        .btn-ghost:hover {
-            background: var(--primary-50);
+        /* --- Call UI --- */
+        .call-container {
+            height: 400px; background: #2d3436; border-radius: 32px; position: relative;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
+        .call-controls { position: absolute; bottom: 30px; display: flex; gap: 20px; }
+        .ctrl-btn { width: 55px; height: 55px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; }
+        .ctrl-btn.end { background: var(--danger); }
 
-        .btn-large {
-            padding: var(--space-lg) var(--space-2xl);
-            font-size: var(--h4);
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        /* Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-lg);
-            z-index: var(--z-modal);
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-base);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: white;
-            border-radius: var(--radius-xl);
-            width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-xl);
-            animation: modalIn var(--transition-base);
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--space-xl);
-            border-bottom: 1px solid var(--neutral-200);
-        }
-
-        .modal-title {
-            font-size: var(--h3);
-            font-weight: 700;
-            color: var(--neutral-900);
-        }
-
-        .modal-close {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--neutral-200);
-            background: white;
-            color: var(--neutral-600);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-fast);
-        }
-
-        .modal-close:hover {
-            background: var(--neutral-100);
-            color: var(--neutral-800);
-        }
-
-        .modal-body {
-            padding: var(--space-xl);
-        }
-
-        .privacy-list {
-            list-style: none;
-        }
-
-        .privacy-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-md);
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid var(--neutral-100);
-        }
-
-        .privacy-list li:last-child {
-            border-bottom: none;
-        }
-
-        .privacy-list li i {
-            color: var(--primary-600);
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .modal-footer {
-            padding: var(--space-xl);
-            border-top: 1px solid var(--neutral-200);
-            display: flex;
-            justify-content: flex-end;
-            gap: var(--space-md);
-        }
-
-        /* Form Elements */
-        .form-group {
-            margin-bottom: var(--space-xl);
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: var(--space-sm);
-            font-weight: 600;
-            color: var(--neutral-800);
-        }
-
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: var(--space-md) var(--space-lg);
-            border: 1px solid var(--neutral-300);
-            border-radius: var(--radius-lg);
-            font-size: var(--body);
-            transition: all var(--transition-fast);
-            background: white;
-        }
-
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-500);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        /* Toast Notifications */
-        .toast-container {
-            position: fixed;
-            bottom: var(--space-xl);
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: var(--z-toast);
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-            align-items: center;
-            width: 90%;
-            max-width: 400px;
-        }
-
+        /* --- Toast --- */
         .toast {
-            background: white;
-            padding: var(--space-md) var(--space-lg);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            animation: toastIn 0.3s ease;
-            border-left: 4px solid var(--success);
-            width: 100%;
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+            background: var(--neutral-900); color: white; padding: 12px 30px;
+            border-radius: 50px; display: none; z-index: 2000; animation: pop 0.3s ease;
         }
+        @keyframes pop { from { opacity:0; transform: translate(-50%, 20px); } to { opacity:1; transform: translate(-50%, 0); } }
 
-        .toast.info {
-            border-left-color: var(--info);
-        }
+        /* --- RTL/LTR Utils --- */
+        [dir="ltr"] .btn-back { transform: scaleX(1); }
+        [dir="rtl"] .btn-back { transform: scaleX(-1); }
 
-        .toast.warning {
-            border-left-color: var(--warning);
-        }
-
-        .toast.danger {
-            border-left-color: var(--danger);
-        }
-
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        .toast i {
-            font-size: 1.25rem;
-            color: var(--success);
-        }
-
-        .toast.info i {
-            color: var(--info);
-        }
-
-        .toast.warning i {
-            color: var(--warning);
-        }
-
-        .toast.danger i {
-            color: var(--danger);
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            :root {
-                --h1: 2.5rem;
-                --h2: 2rem;
-                --h3: 1.5rem;
-                --h4: 1.125rem;
-            }
-            
-            .landing-container {
-                padding: var(--space-xl) var(--space-md);
-            }
-            
-            .trust-strip {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .call-controls {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-            
-            .control-group {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .chat-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-content {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-            
-            .logo-subtitle {
-                display: inline;
-            }
-            
-            .message {
-                max-width: 90%;
-            }
-        }
-
-        /* Accessibility */
-        :focus-visible {
-            outline: 2px solid var(--primary-500);
-            outline-offset: 2px;
-        }
-
-        /* Print Styles */
-        @media print {
-            .top-nav,
-            .chat-input-container,
-            .call-controls,
-            .btn-back {
-                display: none !important;
-            }
-            
-            .page {
-                opacity: 1 !important;
-                visibility: visible !important;
-                transform: none !important;
-                position: static !important;
-            }
-            
-            .chat-container,
-            .call-container {
-                box-shadow: none !important;
-                border: 1px solid var(--neutral-300) !important;
-            }
+            .card-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- App Container -->
-    <div class="app-container" id="appContainer">
-        <!-- Top Navigation Bar -->
-        <nav class="top-nav" id="topNav">
-            <div class="nav-content">
-                <div class="logo-section">
-                    <h1 class="logo" id="logoText">نحن معك</h1>
-                    <span class="logo-subtitle" id="logoSubtitle">Nahnu Ma'ak</span>
+    <div class="bg-canvas">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <div class="app-shell">
+        <header class="top-bar">
+            <div class="logo" data-i18n="logo">نحن معك</div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="status-pill">
+                    <span data-i18n="status-anon">هوية محمية</span>
                 </div>
-                
-                <div class="nav-controls">
-                    <div class="privacy-badge" id="privacyBadge">
-                        <i class="fas fa-user-secret"></i>
-                        <span id="privacyBadgeText">Anonymous</span>
-                    </div>
-                    
-                    <div class="language-toggle" id="languageToggle">
-                        <button class="lang-btn active" data-lang="ar">AR</button>
-                        <button class="lang-btn" data-lang="en">EN</button>
-                    </div>
-                </div>
+                <button id="langToggle" class="btn-secondary" style="padding: 10px 20px;">EN</button>
             </div>
-        </nav>
+        </header>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Page A: Landing -->
-            <section class="page active" id="pageLanding">
-                <div class="landing-container">
-                    <div class="landing-hero">
-                        <h1 class="hero-title" id="heroTitle">خصوصيتك أولاً.<br>خذ الخطوة الأولى بثقة.</h1>
-                        <p class="hero-subtitle" id="heroSubtitle">Privacy first. Take the first step with confidence.</p>
-                        
-                        <div class="trust-strip">
-                            <div class="trust-badge">
-                                <i class="fas fa-ban"></i>
-                                <span id="trustBadge1">بدون اسم</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i class="fas fa-mask"></i>
-                                <span id="trustBadge2">هوية مخفية</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i class="fas fa-shield-alt"></i>
-                                <span id="trustBadge3">دعم آمن</span>
-                            </div>
-                        </div>
-                    </div>
+        <main id="view-manager">
+            <section id="page-landing" class="view active">
+                <div class="hero">
+                    <h1 data-i18n="h1">خصوصيتك هي أولويتنا القصوى</h1>
+                    <p data-i18n="sub">نحن معك: منصة آمنة تماماً للدعم النفسي والطبي. تحدث مع مختصين أو استخدم الذكاء الاصطناعي بكل سرية وبدون الحاجة لمشاركة هويتك.</p>
                     
-                    <div class="landing-actions">
-                        <button class="btn btn-primary btn-large" id="startButton">
-                            <span id="startButtonText">ابدأ الآن</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                        
-                        <button class="btn btn-ghost" id="privacyInfoButton">
-                            <i class="fas fa-lock"></i>
-                            <span id="privacyInfoText">كيف نحمي خصوصيتك؟</span>
-                        </button>
+                    <div class="trust-badges">
+                        <div class="badge"><span data-i18n="b1">بسرية تامة</span></div>
+                        <div class="badge"><span data-i18n="b2">بدون اسم</span></div>
+                        <div class="badge"><span data-i18n="b3">دعم مجاني للعرض</span></div>
                     </div>
-                    
-                    <div class="scroll-hint">
-                        <i class="fas fa-chevron-down"></i>
+
+                    <div class="cta-group">
+                        <button class="btn-primary" onclick="show('page-choose')" data-i18n="btn-start">ابدأ رحلتك</button>
+                        <button class="btn-secondary" onclick="openMod('privacy')" data-i18n="btn-how">كيف نحميك؟</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Page B: Privacy + Choose -->
-            <section class="page" id="pageChoose">
-                <div class="choose-container">
-                    <button class="btn-back" id="backToLanding">
-                        <i class="fas fa-arrow-left"></i>
-                        <span id="backButtonText">الرجوع</span>
-                    </button>
-                    
-                    <div class="privacy-panel">
-                        <div class="privacy-header">
-                            <i class="fas fa-user-shield"></i>
-                            <h3 id="privacyTitle">كل ما تكتبه هنا خاص. لا نشارك بياناتك إلا بإذنك.</h3>
-                        </div>
-                        <p class="privacy-subtitle" id="privacySubtitle">يمكنك المتابعة بدون اسم. والتحويل لمختص يبقى بدون كشف الهوية.</p>
+            <section id="page-choose" class="view">
+                <button class="btn-secondary btn-back" onclick="show('page-landing')" style="margin-bottom: 24px; padding: 10px 15px;">←</button>
+                <div class="glass-card" style="margin-bottom: 30px; padding: 25px;">
+                    <p data-i18n="choose-info">جميع محادثاتك مشفرة ولا يتم حفظها إلا في جهازك الخاص.</p>
+                </div>
+
+                <div class="card-grid">
+                    <div class="option-card glass-card" onclick="startAI()">
+                        <span class="card-icon">🍃</span>
+                        <h3 data-i18n="ai-t">تحدث مع الذكاء الاصطناعي</h3>
+                        <p style="font-size: 0.9rem; color: var(--neutral-700); margin-top: 10px;" data-i18n="ai-d">دعم فوري متوفر 24/7 يساعدك في فهم مشاعرك بهدوء.</p>
                     </div>
-                    
-                    <h2 class="section-title" id="chooseTitle">اختر طريقة الدعم</h2>
-                    
-                    <div class="cards-container">
-                        <!-- AI Support Card -->
-                        <div class="selection-card" id="aiCard">
-                            <div class="card-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3 class="card-title" id="aiCardTitle">التواصل مع الذكاء الاصطناعي</h3>
-                            <p class="card-subtitle" id="aiCardSubtitle">دعم مبدئي بسرّية + أسئلة منظمة تساعدك تفهم مشاعرك.</p>
-                            
-                            <div class="card-features">
-                                <div class="feature">
-                                    <i class="fas fa-bolt"></i>
-                                    <span id="aiFeature1">إجابة فورية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-list-check"></i>
-                                    <span id="aiFeature2">أسئلة منظمة</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-user-md"></i>
-                                    <span id="aiFeature3">تحويل لمختص</span>
-                                </div>
-                            </div>
-                            
-                            <div class="card-action">
-                                <button class="btn btn-secondary btn-block" id="startAiButton">
-                                    <span id="startAiText">ابدأ المحادثة</span>
-                                    <i class="fas fa-comment"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Specialist Card -->
-                        <div class="selection-card" id="specialistCard">
-                            <div class="card-icon">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                            <h3 class="card-title" id="specialistCardTitle">التواصل مع مختص حقيقي</h3>
-                            <p class="card-subtitle" id="specialistCardSubtitle">واجهة اتصال للعرض — بدون اتصال فعلي.</p>
-                            
-                            <div class="card-features">
-                                <div class="feature">
-                                    <i class="fas fa-mask"></i>
-                                    <span id="specialistFeature1">بدون كشف الهوية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-phone-alt"></i>
-                                    <span id="specialistFeature2">تجربة مكالمة رسمية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-calendar-check"></i>
-                                    <span id="specialistFeature3">طلب موعد (نموذج)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="card-action">
-                                <button class="btn btn-primary btn-block" id="startSpecialistButton">
-                                    <span id="startSpecialistText">بدء المكالمة التجريبية</span>
-                                    <i class="fas fa-phone"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="option-card glass-card" onclick="startCall()">
+                        <span class="card-icon">🤝</span>
+                        <h3 data-i18n="spec-t">تحدث مع مختص حقيقي</h3>
+                        <p style="font-size: 0.9rem; color: var(--neutral-700); margin-top: 10px;" data-i18n="spec-d">استشارة مباشرة عبر واجهة اتصال تجريبية تحافظ على خصوصيتك.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Page C: AI Chat -->
-            <section class="page" id="pageChat">
-                <div class="chat-container">
-                    <!-- Chat Header -->
-                    <div class="chat-header">
-                        <button class="btn-back" id="backToChoose">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        
-                        <div class="chat-header-info">
-                            <h2 class="chat-title" id="chatTitle">محادثة مع الذكاء الاصطناعي</h2>
-                            <div class="status-chips">
-                                <div class="status-chip anonymous">
-                                    <i class="fas fa-user-secret"></i>
-                                    <span id="anonymousChipText">مجهول</span>
-                                </div>
-                                <div class="status-chip online">
-                                    <div class="online-dot"></div>
-                                    <span id="onlineChipText">متصل</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-header-actions">
-                            <button class="btn-icon" id="saveChatButton" title="Save conversation">
-                                <i class="fas fa-save"></i>
-                            </button>
-                            <button class="btn-icon" id="clearChatButton" title="Clear conversation">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
+            <section id="page-chat" class="view">
+                <div class="glass-card" style="padding: 25px; height: 75vh; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <button class="btn-secondary" onclick="show('page-choose')" style="padding: 8px 15px;">←</button>
+                        <span style="font-weight: 600;" data-i18n="ai-name">مساعدك الرقمي</span>
+                        <button class="btn-primary" onclick="startCall()" style="padding: 8px 15px; font-size: 0.8rem;" data-i18n="switch">مختص حقيقي</button>
                     </div>
-                    
-                    <!-- Chat Messages Area -->
-                    <div class="chat-messages" id="chatMessages">
-                        <!-- AI Welcome Message -->
-                        <div class="message ai-message">
-                            <div class="message-avatar">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="message-content">
-                                <p id="aiWelcomeMessage">نحن معك. أخبرنا بما تشعر به الآن.</p>
-                                <div class="message-time">الآن</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Chat Input Area -->
-                    <div class="chat-input-container">
-                        <div class="chat-input-wrapper">
-                            <input type="text" 
-                                   class="chat-input" 
-                                   id="chatInput"
-                                   placeholder="اكتب رسالتك هنا..."
-                                   autocomplete="off">
-                            <button class="btn-send" id="sendMessageButton">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="chat-controls">
-                            <button class="btn btn-secondary" id="switchToSpecialistButton">
-                                <i class="fas fa-user-md"></i>
-                                <span id="switchToSpecialistText">التحويل إلى مختص</span>
-                            </button>
-                            
-                            <div class="chat-disclaimer">
-                                <i class="fas fa-exclamation-circle"></i>
-                                <p id="chatDisclaimer">هذه نسخة أولية ولا تغني عن الاستشارة الطبية. في الحالات الطارئة تواصل مع الجهات المختصة.</p>
-                            </div>
-                        </div>
+
+                    <div id="chat-stream" class="chat-box"></div>
+
+                    <div id="typing-ind" style="display:none; font-size: 0.8rem; color: var(--neutral-700); margin-bottom: 5px;" data-i18n="typing">يكتب الآن...</div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatIn" placeholder="اكتب ما يدور في خاطرك..." data-i18n-placeholder="chat-p">
+                        <button class="btn-primary" id="send">➤</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Page D: Call Prototype -->
-            <section class="page" id="pageCall">
-                <div class="call-container">
-                    <!-- Call Header -->
-                    <div class="call-header">
-                        <button class="btn-back" id="backToChooseFromCall">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        
-                        <div class="call-header-info">
-                            <div class="call-title">
-                                <i class="fas fa-user-secret"></i>
-                                <h2 id="callTitle">مكالمة مجهولة</h2>
-                            </div>
-                            <div class="call-status" id="callStatus">
-                                <div class="connecting-dots">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <span id="statusText">جارِ الاتصال...</span>
-                            </div>
-                        </div>
+            <section id="page-call" class="view">
+                <div class="call-container glass-card">
+                    <div style="text-align: center; color: white; z-index: 5;">
+                        <div id="call-loader" style="width:50px; height:50px; border:3px solid rgba(255,255,255,0.2); border-top-color:var(--secondary-500); border-radius:50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                        <h2 id="call-txt" data-i18n="connecting">جاري البحث عن مختص متاح...</h2>
+                        <button id="sched-btn" class="btn-primary" style="display:none; margin-top:20px;" onclick="openMod('sched')" data-i18n="sched-btn">جدولة موعد لاحق</button>
                     </div>
                     
-                    <!-- Call Stage -->
-                    <div class="call-stage">
-                        <div class="video-tile">
-                            <div class="video-placeholder">
-                                <div class="specialist-avatar">
-                                    <i class="fas fa-user-md"></i>
-                                </div>
-                                <div class="specialist-info">
-                                    <h3 id="specialistName">أخصائي (تجريبي)</h3>
-                                    <p id="specialistRole">استشاري صحة نفسية</p>
-                                </div>
-                            </div>
-                            
-                            <div class="video-overlay">
-                                <div class="no-specialist-message" id="noSpecialistMessage">
-                                    <i class="fas fa-calendar-times"></i>
-                                    <h3 id="noSpecialistTitle">لا يوجد أخصائي متاح حاليًا — هذا مجرد عرض تجريبي</h3>
-                                    <p id="noSpecialistSubtitle">يمكنك طلب موعد وسنتواصل معك خلال 24 ساعة</p>
-                                    <button class="btn btn-primary btn-large" id="scheduleRequestButton">
-                                        <i class="fas fa-calendar-plus"></i>
-                                        <span id="scheduleRequestText">طلب موعد (تجريبي)</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Call Controls -->
                     <div class="call-controls">
-                        <div class="control-group">
-                            <button class="call-control-btn" id="micButton">
-                                <i class="fas fa-microphone"></i>
-                                <span id="micLabel">ميكروفون</span>
-                            </button>
-                            <button class="call-control-btn" id="cameraButton">
-                                <i class="fas fa-video"></i>
-                                <span id="cameraLabel">كاميرا</span>
-                            </button>
-                            <button class="call-control-btn" id="captionButton">
-                                <i class="fas fa-closed-captioning"></i>
-                                <span id="captionLabel">ترجمة</span>
-                            </button>
-                        </div>
-                        
-                        <button class="call-control-btn destructive" id="endCallButton">
-                            <i class="fas fa-phone-slash"></i>
-                            <span id="endCallLabel">إنهاء المكالمة</span>
-                        </button>
+                        <button class="ctrl-btn">🎤</button>
+                        <button class="ctrl-btn">📷</button>
+                        <button class="ctrl-btn end" onclick="show('page-choose')">✕</button>
                     </div>
                 </div>
             </section>
         </main>
-
-        <!-- Modals -->
-        <div class="modal-overlay" id="modalOverlay">
-            <!-- Privacy Modal -->
-            <div class="modal" id="privacyModal">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="privacyModalTitle">كيف نحمي خصوصيتك</h3>
-                    <button class="modal-close" id="closePrivacyModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="privacy-list">
-                        <li>
-                            <i class="fas fa-user-secret"></i>
-                            <span id="privacyPoint1">جلسات مجهولة الهوية بشكل افتراضي</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-ban"></i>
-                            <span id="privacyPoint2">لا نطلب اسمك الحقيقي</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-database"></i>
-                            <span id="privacyPoint3">التخزين المحلي فقط (لا توجد خوادم)</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-shield-alt"></i>
-                            <span id="privacyPoint4">لا نشارك بياناتك دون إذنك</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-trash-alt"></i>
-                            <span id="privacyPoint5">يمكنك حذف جلستك في أي وقت</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="privacyModalCloseButton">
-                        <span id="privacyModalCloseText">فهمت</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Schedule Modal -->
-            <div class="modal" id="scheduleModal">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="scheduleModalTitle">طلب موعد مع مختص</h3>
-                    <button class="modal-close" id="closeScheduleModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="scheduleForm">
-                        <div class="form-group">
-                            <label for="preferredTime" id="timeLabel">الوقت المفضل</label>
-                            <select class="form-select" id="preferredTime">
-                                <option value="" id="timePlaceholder">اختر وقتًا...</option>
-                                <option value="morning" id="morningOption">صباحًا (9 ص - 12 م)</option>
-                                <option value="afternoon" id="afternoonOption">بعد الظهر (12 م - 4 م)</option>
-                                <option value="evening" id="eveningOption">مساءً (4 م - 8 م)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="concernType" id="concernLabel">نوع الاستشارة</label>
-                            <select class="form-select" id="concernType">
-                                <option value="" id="concernPlaceholder">اختر نوعًا...</option>
-                                <option value="mental" id="mentalOption">دعم نفسي</option>
-                                <option value="medical" id="medicalOption">استشارة طبية</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="concernNote" id="noteLabel">ملاحظات إضافية (اختياري)</label>
-                            <textarea class="form-textarea" 
-                                      id="concernNote" 
-                                      rows="3"
-                                      placeholder="اكتب ملاحظاتك هنا..."></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" id="cancelScheduleButton">
-                        <span id="cancelScheduleText">إلغاء</span>
-                    </button>
-                    <button class="btn btn-primary" id="submitScheduleButton">
-                        <i class="fas fa-paper-plane"></i>
-                        <span id="submitScheduleText">إرسال الطلب</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Toast Notifications -->
-        <div class="toast-container" id="toastContainer"></div>
     </div>
 
-    <script>
-        // نحن معك (Nahnu Ma'ak) - Healthcare Platform Application
-        // Main Application Script
+    <div id="modPrivacy" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+        <div class="glass-card" style="max-width: 500px; background:white;">
+            <h2 data-i18n="p-h">أمانك هو وعدنا</h2>
+            <ul style="margin: 20px 0; padding-inline-start: 20px; line-height: 2;">
+                <li data-i18n="p1">لا نطلب الاسم أو رقم الهاتف أو البريد.</li>
+                <li data-i18n="p2">التشفير يتم من الطرفين لضمان السرية.</li>
+                <li data-i18n="p3">يمكنك مسح بيانات الجلسة بضغطة واحدة.</li>
+            </ul>
+            <button class="btn-primary" style="width:100%" onclick="closeMod('privacy')" data-i18n="close">أفهم ذلك</button>
+        </div>
+    </div>
 
-        class NahnuMaakApp {
-            constructor() {
-                this.currentPage = 'landing';
-                this.currentLang = localStorage.getItem('nahnu_lang') || 'ar';
-                this.chatHistory = JSON.parse(localStorage.getItem('nahnu_chat')) || [];
-                this.isConnecting = false;
-                this.callTimer = null;
-                
-                this.translations = {
-                    ar: {
-                        // App Texts
-                        appName: "نحن معك",
-                        appSubtitle: "Nahnu Ma'ak",
-                        privacyBadge: "مجهول",
-                        
-                        // Landing Page
-                        heroTitle: "خصوصيتك أولاً.<br>خذ الخطوة الأولى بثقة.",
-                        heroSubtitle: "Privacy first. Take the first step with confidence.",
-                        trustBadge1: "بدون اسم",
-                        trustBadge2: "هوية مخفية",
-                        trustBadge3: "دعم آمن",
-                        startButton: "ابدأ الآن",
-                        privacyInfoButton: "كيف نحمي خصوصيتك؟",
-                        
-                        // Privacy Modal
-                        privacyModalTitle: "كيف نحمي خصوصيتك",
-                        privacyPoint1: "جلسات مجهولة الهوية بشكل افتراضي",
-                        privacyPoint2: "لا نطلب اسمك الحقيقي",
-                        privacyPoint3: "التخزين المحلي فقط (لا توجد خوادم)",
-                        privacyPoint4: "لا نشارك بياناتك دون إذنك",
-                        privacyPoint5: "يمكنك حذف جلستك في أي وقت",
-                        privacyModalClose: "فهمت",
-                        
-                        // Choose Page
-                        backButton: "الرجوع",
-                        privacyTitle: "كل ما تكتبه هنا خاص. لا نشارك بياناتك إلا بإذنك.",
-                        privacySubtitle: "يمكنك المتابعة بدون اسم. والتحويل لمختص يبقى بدون كشف الهوية.",
-                        chooseTitle: "اختر طريقة الدعم",
-                        aiCardTitle: "التواصل مع الذكاء الاصطناعي",
-                        aiCardSubtitle: "دعم مبدئي بسرّية + أسئلة منظمة تساعدك تفهم مشاعرك.",
-                        aiFeature1: "إجابة فورية",
-                        aiFeature2: "أسئلة منظمة",
-                        aiFeature3: "تحويل لمختص",
-                        startAiButton: "ابدأ المحادثة",
-                        specialistCardTitle: "التواصل مع مختص حقيقي",
-                        specialistCardSubtitle: "واجهة اتصال للعرض — بدون اتصال فعلي.",
-                        specialistFeature1: "بدون كشف الهوية",
-                        specialistFeature2: "تجربة مكالمة رسمية",
-                        specialistFeature3: "طلب موعد (نموذج)",
-                        startSpecialistButton: "بدء المكالمة التجريبية",
-                        
-                        // Chat Page
-                        chatTitle: "محادثة مع الذكاء الاصطناعي",
-                        anonymousChip: "مجهول",
-                        onlineChip: "متصل",
-                        aiWelcomeMessage: "نحن معك. أخبرنا بما تشعر به الآن.",
-                        chatInputPlaceholder: "اكتب رسالتك هنا...",
-                        switchToSpecialistText: "التحويل إلى مختص",
-                        chatDisclaimer: "هذه نسخة أولية ولا تغني عن الاستشارة الطبية. في الحالات الطارئة تواصل مع الجهات المختصة.",
-                        saveChatTitle: "حفظ المحادثة",
-                        clearChatTitle: "مسح المحادثة",
-                        
-                        // Call Page
-                        callTitle: "مكالمة مجهولة",
-                        connectingStatus: "جارِ الاتصال...",
-                        specialistName: "أخصائي (تجريبي)",
-                        specialistRole: "استشاري صحة نفسية",
-                        noSpecialistTitle: "لا يوجد أخصائي متاح حاليًا — هذا مجرد عرض تجريبي",
-                        noSpecialistSubtitle: "يمكنك طلب موعد وسنتواصل معك خلال 24 ساعة",
-                        scheduleRequestButton: "طلب موعد (تجريبي)",
-                        micLabel: "ميكروفون",
-                        cameraLabel: "كاميرا",
-                        captionLabel: "ترجمة",
-                        endCallLabel: "إنهاء المكالمة",
-                        
-                        // Schedule Modal
-                        scheduleModalTitle: "طلب موعد مع مختص",
-                        timeLabel: "الوقت المفضل",
-                        timePlaceholder: "اختر وقتًا...",
-                        morningOption: "صباحًا (9 ص - 12 م)",
-                        afternoonOption: "بعد الظهر (12 م - 4 م)",
-                        eveningOption: "مساءً (4 م - 8 م)",
-                        concernLabel: "نوع الاستشارة",
-                        concernPlaceholder: "اختر نوعًا...",
-                        mentalOption: "دعم نفسي",
-                        medicalOption: "استشارة طبية",
-                        noteLabel: "ملاحظات إضافية (اختياري)",
-                        cancelScheduleButton: "إلغاء",
-                        submitScheduleButton: "إرسال الطلب",
-                        
-                        // Toasts
-                        toastSaved: "تم حفظ المحادثة محليًا",
-                        toastCleared: "تم مسح المحادثة",
-                        toastScheduled: "تم إرسال طلب الموعد (تجريبي)",
-                        toastError: "حدث خطأ، حاول مرة أخرى",
-                        
-                        // AI Responses
-                        aiResponses: {
-                            default: "أفهم أنك تريد التحدث. هل يمكنك أن تخبرني أكثر عما تشعر به؟",
-                            anxiety: "القلق شعور صعب. خذ نفسًا عميقًا. هل يمكنك تحديد ما الذي يسبب لك القلق تحديدًا؟",
-                            sadness: "أنا هنا معك. الحزن جزء من التجربة الإنسانية. هل حدث شيء محدد جعلك تشعر بهذا الشعور؟",
-                            sleep: "مشاكل النوم يمكن أن تؤثر على صحتك. هل تواجه صعوبة في النوم أم في الاستمرار في النوم؟",
-                            pain: "الألم الجسدي قد يكون مرتبطًا بالتوتر. هل يمكنك وصف مكان وشدة الألم؟",
-                            stress: "التوتر يمكن أن يكون مرهقًا. ما هي أكبر مصادر التوتر في حياتك حالياً؟",
-                            doctor: "أقترح التحويل إلى أخصائي لمزيد من الدعم. هل تريد أن أبدلك إلى صفحة طلب موعد مع مختص؟"
-                        }
-                    },
-                    en: {
-                        // App Texts
-                        appName: "نحن معك",
-                        appSubtitle: "Nahnu Ma'ak",
-                        privacyBadge: "Anonymous",
-                        
-                        // Landing Page
-                        heroTitle: "Privacy first.<br>Take the first step with confidence.",
-                        heroSubtitle: "Privacy first. Take the first step with confidence.",
-                        trustBadge1: "No name required",
-                        trustBadge2: "Anonymous by design",
-                        trustBadge3: "Safe support",
-                        startButton: "Start now",
-                        privacyInfoButton: "How we protect your privacy",
-                        
-                        // Privacy Modal
-                        privacyModalTitle: "How we protect your privacy",
-                        privacyPoint1: "Anonymous sessions by default",
-                        privacyPoint2: "No real name required",
-                        privacyPoint3: "Local-only prototype storage",
-                        privacyPoint4: "Data is not shared without permission",
-                        privacyPoint5: "You can delete your session anytime",
-                        privacyModalClose: "Got it",
-                        
-                        // Choose Page
-                        backButton: "Back",
-                        privacyTitle: "Everything you share is private. We don't share data without your permission.",
-                        privacySubtitle: "Continue without a name. Switching to a specialist stays anonymous.",
-                        chooseTitle: "Choose support method",
-                        aiCardTitle: "Talk to AI Support",
-                        aiCardSubtitle: "Private first-step support + structured questions to help you reflect.",
-                        aiFeature1: "Instant response",
-                        aiFeature2: "Structured prompts",
-                        aiFeature3: "Switch to specialist",
-                        startAiButton: "Start conversation",
-                        specialistCardTitle: "Talk to a Real Specialist",
-                        specialistCardSubtitle: "Call UI demo — no real connection.",
-                        specialistFeature1: "Anonymous",
-                        specialistFeature2: "Official call experience",
-                        specialistFeature3: "Schedule request (demo)",
-                        startSpecialistButton: "Start demo call",
-                        
-                        // Chat Page
-                        chatTitle: "AI Support Conversation",
-                        anonymousChip: "Anonymous",
-                        onlineChip: "Online",
-                        aiWelcomeMessage: "We're with you. Tell us what you're feeling right now.",
-                        chatInputPlaceholder: "Type your message here...",
-                        switchToSpecialistText: "Switch to Specialist",
-                        chatDisclaimer: "Prototype only. Not medical advice. In emergencies, contact local services.",
-                        saveChatTitle: "Save conversation",
-                        clearChatTitle: "Clear conversation",
-                        
-                        // Call Page
-                        callTitle: "Anonymous Call",
-                        connectingStatus: "Connecting...",
-                        specialistName: "Specialist (Demo)",
-                        specialistRole: "Mental Health Consultant",
-                        noSpecialistTitle: "No specialist available — demo prototype only",
-                        noSpecialistSubtitle: "You can request an appointment and we'll contact you within 24 hours",
-                        scheduleRequestButton: "Schedule request (demo)",
-                        micLabel: "Microphone",
-                        cameraLabel: "Camera",
-                        captionLabel: "Captions",
-                        endCallLabel: "End call",
-                        
-                        // Schedule Modal
-                        scheduleModalTitle: "Schedule Appointment with Specialist",
-                        timeLabel: "Preferred time",
-                        timePlaceholder: "Choose a time...",
-                        morningOption: "Morning (9 AM - 12 PM)",
-                        afternoonOption: "Afternoon (12 PM - 4 PM)",
-                        eveningOption: "Evening (4 PM - 8 PM)",
-                        concernLabel: "Concern type",
-                        concernPlaceholder: "Choose a type...",
-                        mentalOption: "Mental support",
-                        medicalOption: "Medical consultation",
-                        noteLabel: "Additional notes (optional)",
-                        cancelScheduleButton: "Cancel",
-                        submitScheduleButton: "Submit request",
-                        
-                        // Toasts
-                        toastSaved: "Conversation saved locally",
-                        toastCleared: "Conversation cleared",
-                        toastScheduled: "Appointment request sent (demo)",
-                        toastError: "An error occurred, please try again",
-                        
-                        // AI Responses
-                        aiResponses: {
-                            default: "I understand you want to talk. Can you tell me more about what you're feeling?",
-                            anxiety: "Anxiety can be difficult. Take a deep breath. Can you pinpoint what's causing your anxiety?",
-                            sadness: "I'm here with you. Sadness is part of the human experience. Has something specific made you feel this way?",
-                            sleep: "Sleep issues can affect your health. Are you having trouble falling asleep or staying asleep?",
-                            pain: "Physical pain might be related to stress. Can you describe the location and intensity of the pain?",
-                            stress: "Stress can be overwhelming. What are the biggest sources of stress in your life right now?",
-                            doctor: "I suggest switching to a specialist for more support. Would you like me to redirect you to schedule an appointment?"
-                        }
-                    }
-                };
-                
-                this.init();
+    <div id="modSched" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+        <div class="glass-card" style="max-width: 500px; background:white; width:100%;">
+            <h2 data-i18n="s-h">طلب استشارة خاصة</h2>
+            <div style="margin-top:20px; display:flex; flex-direction:column; gap:15px;">
+                <select style="padding:15px; border-radius:15px; border:1px solid #ddd;">
+                    <option data-i18n="opt1">استشارة نفسية</option>
+                    <option data-i18n="opt2">استشارة طبية عامة</option>
+                </select>
+                <textarea placeholder="ملاحظاتك..." style="padding:15px; border-radius:15px; border:1px solid #ddd; height:100px;"></textarea>
+                <button class="btn-primary" onclick="triggerToast('sent')" data-i18n="send-btn">إرسال الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        const i18n = {
+            ar: {
+                logo: "نحن معك", "status-anon": "هوية محمية", h1: "خصوصيتك هي أولويتنا القصوى",
+                sub: "نحن معك: منصة آمنة تماماً للدعم النفسي والطبي. تحدث مع مختصين أو استخدم الذكاء الاصطناعي بكل سرية وبدون الحاجة لمشاركة هويتك.",
+                b1: "بسرية تامة", b2: "بدون اسم", b3: "دعم مجاني للعرض", "btn-start": "ابدأ رحلتك", "btn-how": "كيف نحميك؟",
+                "choose-info": "جميع محادثاتك مشفرة ولا يتم حفظها إلا في جهازك الخاص.", "ai-t": "تحدث مع الذكاء الاصطناعي",
+                "ai-d": "دعم فوري متوفر 24/7 يساعدك في فهم مشاعرك بهدوء.", "spec-t": "تحدث مع مختص حقيقي",
+                "spec-d": "استشارة مباشرة عبر واجهة اتصال تجريبية تحافظ على خصوصيتك.", "ai-name": "مساعدك الرقمي",
+                switch: "مختص حقيقي", typing: "يكتب الآن...", "chat-p": "اكتب ما يدور في خاطرك...",
+                connecting: "جاري البحث عن مختص متاح...", "sched-btn": "جدولة موعد لاحق", "p-h": "أمانك هو وعدنا",
+                p1: "لا نطلب الاسم أو رقم الهاتف أو البريد.", p2: "التشفير يتم من الطرفين لضمان السرية.",
+                p3: "يمكنك مسح بيانات الجلسة بضغطة واحدة.", close: "أفهم ذلك", "s-h": "طلب استشارة خاصة",
+                opt1: "استشارة نفسية", opt2: "استشارة طبية عامة", "send-btn": "إرسال الطلب", "welcome": "أهلاً بك. أنا هنا لأسمعك، كيف تشعر اليوم؟",
+                "t-sent": "تم إرسال طلبك بنجاح", "ai-res": "أفهمك تماماً. نحن هنا معك لتقديم الدعم والراحة."
+            },
+            en: {
+                logo: "Nahnu Ma’ak", "status-anon": "Protected Identity", h1: "Your Privacy is Our Top Priority",
+                sub: "Nahnu Ma’ak: A fully secure platform for mental and medical support. Talk to specialists or use AI anonymously without sharing your identity.",
+                b1: "Fully Private", b2: "No Name Required", b3: "Free Support Demo", "btn-start": "Start Journey", "btn-how": "How we protect you?",
+                "choose-info": "All your conversations are encrypted and saved only on your personal device.", "ai-t": "Talk to AI Assistant",
+                "ai-d": "24/7 instant support to help you understand your feelings calmly.", "spec-t": "Talk to a Real Specialist",
+                "spec-d": "A direct consultation demo UI that maintains your total anonymity.", "ai-name": "Digital Assistant",
+                switch: "Real Specialist", typing: "AI is typing...", "chat-p": "Type what's on your mind...",
+                connecting: "Looking for an available specialist...", "sched-btn": "Schedule Later", "p-h": "Your Safety is Our Promise",
+                p1: "We never ask for names, phone numbers, or emails.", p2: "End-to-end encryption ensures total confidentiality.",
+                p3: "You can delete your session data with one tap.", close: "I Understand", "s-h": "Private Consultation Request",
+                opt1: "Mental Health Support", opt2: "General Medical Consult", "send-btn": "Send Request", "welcome": "Welcome. I'm here to listen, how are you feeling today?",
+                "t-sent": "Your request has been sent successfully", "ai-res": "I completely understand. We are here with you to provide comfort and support."
             }
-            
-            init() {
-                this.setupEventListeners();
-                this.loadLanguage(this.currentLang);
-                this.loadChatHistory();
-                this.setupChatAI();
-            }
-            
-            setupEventListeners() {
-                // Language Toggle
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const lang = e.target.dataset.lang;
-                        this.loadLanguage(lang);
-                        localStorage.setItem('nahnu_lang', lang);
-                    });
-                });
-                
-                // Navigation
-                document.getElementById('startButton').addEventListener('click', () => this.navigateTo('choose'));
-                document.getElementById('privacyInfoButton').addEventListener('click', () => this.showPrivacyModal());
-                document.getElementById('backToLanding').addEventListener('click', () => this.navigateTo('landing'));
-                document.getElementById('backToChoose').addEventListener('click', () => this.navigateTo('choose'));
-                document.getElementById('backToChooseFromCall').addEventListener('click', () => this.navigateTo('choose'));
-                
-                // Choose Cards
-                document.getElementById('startAiButton').addEventListener('click', () => this.startAIChat());
-                document.getElementById('startSpecialistButton').addEventListener('click', () => this.startCall());
-                
-                // Chat
-                document.getElementById('sendMessageButton').addEventListener('click', () => this.sendMessage());
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.sendMessage();
-                });
-                document.getElementById('switchToSpecialistButton').addEventListener('click', () => this.navigateTo('call'));
-                document.getElementById('saveChatButton').addEventListener('click', () => this.saveChat());
-                document.getElementById('clearChatButton').addEventListener('click', () => this.clearChat());
-                
-                // Call
-                document.getElementById('endCallButton').addEventListener('click', () => this.navigateTo('choose'));
-                document.getElementById('scheduleRequestButton').addEventListener('click', () => this.showScheduleModal());
-                
-                // Modals
-                document.getElementById('privacyModalCloseButton').addEventListener('click', () => this.hidePrivacyModal());
-                document.getElementById('closePrivacyModal').addEventListener('click', () => this.hidePrivacyModal());
-                document.getElementById('closeScheduleModal').addEventListener('click', () => this.hideScheduleModal());
-                document.getElementById('cancelScheduleButton').addEventListener('click', () => this.hideScheduleModal());
-                document.getElementById('submitScheduleButton').addEventListener('click', () => this.submitSchedule());
-                
-                // Modal overlay close
-                document.getElementById('modalOverlay').addEventListener('click', (e) => {
-                    if (e.target === document.getElementById('modalOverlay')) {
-                        this.hidePrivacyModal();
-                        this.hideScheduleModal();
-                    }
-                });
-                
-                // ESC key to close modals
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        this.hidePrivacyModal();
-                        this.hideScheduleModal();
-                    }
-                });
-                
-                // Demo call controls
-                ['micButton', 'cameraButton', 'captionButton'].forEach(id => {
-                    document.getElementById(id).addEventListener('click', function() {
-                        const icon = this.querySelector('i');
-                        const isActive = this.classList.toggle('active');
-                        
-                        if (id === 'micButton') {
-                            icon.className = isActive ? 'fas fa-microphone-slash' : 'fas fa-microphone';
-                        } else if (id === 'cameraButton') {
-                            icon.className = isActive ? 'fas fa-video-slash' : 'fas fa-video';
-                        }
-                        
-                        // Show toast
-                        const action = isActive ? 'disabled' : 'enabled';
-                        const control = this.querySelector('span').textContent;
-                        app.showToast(`${control} ${action}`, 'info');
-                    });
-                });
-            }
-            
-            loadLanguage(lang) {
-                this.currentLang = lang;
-                
-                // Update HTML direction
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-                document.documentElement.lang = lang;
-                
-                // Update language toggle buttons
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.lang === lang);
-                });
-                
-                // Update all translatable elements
-                const texts = this.translations[lang];
-                
-                // Function to safely update element text
-                const updateText = (id, text) => {
-                    const element = document.getElementById(id);
-                    if (element) {
-                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                            element.placeholder = text;
-                        } else if (element.tagName === 'SELECT') {
-                            // Handle select options
-                            if (id === 'preferredTime') {
-                                element.innerHTML = `
-                                    <option value="">${texts.timePlaceholder}</option>
-                                    <option value="morning">${texts.morningOption}</option>
-                                    <option value="afternoon">${texts.afternoonOption}</option>
-                                    <option value="evening">${texts.eveningOption}</option>
-                                `;
-                            } else if (id === 'concernType') {
-                                element.innerHTML = `
-                                    <option value="">${texts.concernPlaceholder}</option>
-                                    <option value="mental">${texts.mentalOption}</option>
-                                    <option value="medical">${texts.medicalOption}</option>
-                                `;
-                            }
-                        } else {
-                            element.innerHTML = text;
-                        }
-                    }
-                };
-                
-                // Update all texts
-                Object.keys(texts).forEach(key => {
-                    if (typeof texts[key] === 'string') {
-                        updateText(key + 'Text', texts[key]);
-                    } else if (typeof texts[key] === 'object') {
-                        // Handle nested objects like aiResponses
-                        if (key === 'aiResponses') {
-                            // AI responses are handled separately
-                        } else {
-                            Object.keys(texts[key]).forEach(subKey => {
-                                updateText(key + subKey.charAt(0).toUpperCase() + subKey.slice(1), texts[key][subKey]);
-                            });
-                        }
-                    }
-                });
-                
-                // Special cases
-                document.getElementById('logoText').textContent = texts.appName;
-                document.getElementById('logoSubtitle').textContent = texts.appSubtitle;
-                
-                // Update AI welcome message if in chat
-                if (document.querySelector('.ai-message .message-content p')) {
-                    document.querySelector('.ai-message .message-content p').textContent = texts.aiWelcomeMessage;
-                }
-                
-                // Update chat input placeholder
-                document.getElementById('chatInput').placeholder = texts.chatInputPlaceholder;
-            }
-            
-            navigateTo(page) {
-                // Hide all pages
-                document.querySelectorAll('.page').forEach(p => {
-                    p.classList.remove('active');
-                });
-                
-                // Show target page
-                document.getElementById(`page${page.charAt(0).toUpperCase() + page.slice(1)}`).classList.add('active');
-                
-                // Handle page-specific logic
-                if (page === 'chat') {
-                    this.currentPage = 'chat';
-                    document.getElementById('chatInput').focus();
-                    
-                    // If no chat history, add welcome message
-                    if (this.chatHistory.length === 0) {
-                        this.addAIMessage(this.translations[this.currentLang].aiWelcomeMessage);
-                    } else {
-                        // Load chat history
-                        this.loadChatHistory();
-                    }
-                } else if (page === 'call') {
-                    this.currentPage = 'call';
-                    this.startCallSimulation();
-                } else if (page === 'choose') {
-                    this.currentPage = 'choose';
-                } else {
-                    this.currentPage = 'landing';
-                }
-                
-                // Close any open modals
-                this.hidePrivacyModal();
-                this.hideScheduleModal();
-            }
-            
-            showPrivacyModal() {
-                document.getElementById('modalOverlay').classList.add('active');
-                document.getElementById('privacyModal').style.display = 'block';
-                document.getElementById('scheduleModal').style.display = 'none';
-            }
-            
-            hidePrivacyModal() {
-                document.getElementById('modalOverlay').classList.remove('active');
-            }
-            
-            showScheduleModal() {
-                document.getElementById('modalOverlay').classList.add('active');
-                document.getElementById('scheduleModal').style.display = 'block';
-                document.getElementById('privacyModal').style.display = 'none';
-                
-                // Reset form
-                document.getElementById('scheduleForm').reset();
-            }
-            
-            hideScheduleModal() {
-                document.getElementById('modalOverlay').classList.remove('active');
-            }
-            
-            submitSchedule() {
-                const time = document.getElementById('preferredTime').value;
-                const concern = document.getElementById('concernType').value;
-                
-                if (!time || !concern) {
-                    this.showToast(this.translations[this.currentLang].toastError, 'warning');
-                    return;
-                }
-                
-                // Show success toast
-                this.showToast(this.translations[this.currentLang].toastScheduled, 'success');
-                
-                // Close modal
-                this.hideScheduleModal();
-                
-                // In a real app, this would send data to a server
-                console.log('Schedule request submitted:', { time, concern });
-            }
-            
-            startAIChat() {
-                this.navigateTo('chat');
-            }
-            
-            startCall() {
-                this.navigateTo('call');
-            }
-            
-            startCallSimulation() {
-                // Reset UI
-                document.getElementById('noSpecialistMessage').classList.remove('active');
-                document.querySelector('.video-overlay').classList.remove('active');
-                document.getElementById('statusText').textContent = this.translations[this.currentLang].connectingStatus;
-                
-                // Clear any existing timer
-                if (this.callTimer) clearTimeout(this.callTimer);
-                
-                // Start connecting simulation
-                this.isConnecting = true;
-                
-                // After 3-5 seconds, show "no specialist available"
-                const delay = 3000 + Math.random() * 2000; // 3-5 seconds
-                this.callTimer = setTimeout(() => {
-                    this.isConnecting = false;
-                    document.querySelector('.video-overlay').classList.add('active');
-                    document.getElementById('noSpecialistMessage').classList.add('active');
-                    document.getElementById('statusText').textContent = this.translations[this.currentLang].noSpecialistTitle;
-                }, delay);
-            }
-            
-            setupChatAI() {
-                this.aiResponses = this.translations[this.currentLang].aiResponses;
-            }
-            
-            sendMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-                
-                // Add user message
-                this.addUserMessage(message);
-                
-                // Clear input
-                input.value = '';
-                input.focus();
-                
-                // Show typing indicator
-                this.showTypingIndicator();
-                
-                // Generate AI response after delay
-                setTimeout(() => {
-                    this.removeTypingIndicator();
-                    const aiResponse = this.generateAIResponse(message);
-                    this.addAIMessage(aiResponse);
-                    
-                    // Save to history
-                    this.chatHistory.push({
-                        user: message,
-                        ai: aiResponse,
-                        timestamp: new Date().toISOString()
-                    });
-                    
-                    localStorage.setItem('nahnu_chat', JSON.stringify(this.chatHistory));
-                }, 600 + Math.random() * 600); // 600-1200ms
-            }
-            
-            addUserMessage(text) {
-                const messagesContainer = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message user-message';
-                messageDiv.innerHTML = `
-                    <div class="message-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="message-content">
-                        <p>${this.escapeHtml(text)}</p>
-                        <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                    </div>
-                `;
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            addAIMessage(text) {
-                const messagesContainer = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message ai-message';
-                messageDiv.innerHTML = `
-                    <div class="message-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="message-content">
-                        <p>${this.escapeHtml(text)}</p>
-                        <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                    </div>
-                `;
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            showTypingIndicator() {
-                const messagesContainer = document.getElementById('chatMessages');
-                const typingDiv = document.createElement('div');
-                typingDiv.id = 'typingIndicator';
-                typingDiv.className = 'message ai-message typing-indicator';
-                typingDiv.innerHTML = `
-                    <div class="message-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="message-content">
-                        <div class="typing-indicator">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                `;
-                messagesContainer.appendChild(typingDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            removeTypingIndicator() {
-                const typingIndicator = document.getElementById('typingIndicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
-            }
-            
-            generateAIResponse(userMessage) {
-                const lowerMessage = userMessage.toLowerCase();
-                const currentLang = this.currentLang;
-                const responses = this.translations[currentLang].aiResponses;
-                
-                // Arabic keyword matching
-                if (currentLang === 'ar') {
-                    if (lowerMessage.includes('قلق') || lowerMessage.includes('توتر')) {
-                        return responses.anxiety;
-                    } else if (lowerMessage.includes('حزن') || lowerMessage.includes('اكتئاب') || lowerMessage.includes('حزين')) {
-                        return responses.sadness;
-                    } else if (lowerMessage.includes('نوم') || lowerMessage.includes('أرق')) {
-                        return responses.sleep;
-                    } else if (lowerMessage.includes('ألم') || lowerMessage.includes('وجع')) {
-                        return responses.pain;
-                    } else if (lowerMessage.includes('ضغط') || lowerMessage.includes('إجهاد')) {
-                        return responses.stress;
-                    } else if (lowerMessage.includes('طبيب') || lowerMessage.includes('مختص') || lowerMessage.includes('أحتاج طبيب')) {
-                        return responses.doctor;
-                    }
-                } 
-                // English keyword matching
-                else {
-                    if (lowerMessage.includes('anxiety') || lowerMessage.includes('anxious') || lowerMessage.includes('worried')) {
-                        return responses.anxiety;
-                    } else if (lowerMessage.includes('sad') || lowerMessage.includes('depress') || lowerMessage.includes('sadness')) {
-                        return responses.sadness;
-                    } else if (lowerMessage.includes('sleep') || lowerMessage.includes('insomnia')) {
-                        return responses.sleep;
-                    } else if (lowerMessage.includes('pain') || lowerMessage.includes('hurt') || lowerMessage.includes('ache')) {
-                        return responses.pain;
-                    } else if (lowerMessage.includes('stress') || lowerMessage.includes('overwhelm')) {
-                        return responses.stress;
-                    } else if (lowerMessage.includes('doctor') || lowerMessage.includes('specialist') || lowerMessage.includes('i want a doctor')) {
-                        return responses.doctor;
-                    }
-                }
-                
-                return responses.default;
-            }
-            
-            saveChat() {
-                if (this.chatHistory.length === 0) {
-                    this.showToast(this.translations[this.currentLang].toastError, 'warning');
-                    return;
-                }
-                
-                // Save to localStorage
-                localStorage.setItem('nahnu_chat', JSON.stringify(this.chatHistory));
-                
-                // Show toast
-                this.showToast(this.translations[this.currentLang].toastSaved, 'success');
-            }
-            
-            clearChat() {
-                if (this.chatHistory.length === 0) {
-                    this.showToast(this.translations[this.currentLang].toastError, 'warning');
-                    return;
-                }
-                
-                // Clear chat history
-                this.chatHistory = [];
-                localStorage.removeItem('nahnu_chat');
-                
-                // Clear chat UI (keep welcome message)
-                const messagesContainer = document.getElementById('chatMessages');
-                const welcomeMessage = messagesContainer.querySelector('.ai-message');
-                messagesContainer.innerHTML = '';
-                if (welcomeMessage) {
-                    messagesContainer.appendChild(welcomeMessage);
-                } else {
-                    // Add welcome message if not present
-                    this.addAIMessage(this.translations[this.currentLang].aiWelcomeMessage);
-                }
-                
-                // Show toast
-                this.showToast(this.translations[this.currentLang].toastCleared, 'success');
-            }
-            
-            loadChatHistory() {
-                const messagesContainer = document.getElementById('chatMessages');
-                
-                // Clear existing messages except welcome
-                const welcomeMessage = messagesContainer.querySelector('.ai-message');
-                messagesContainer.innerHTML = '';
-                
-                // Add welcome message back
-                if (welcomeMessage) {
-                    messagesContainer.appendChild(welcomeMessage);
-                } else {
-                    this.addAIMessage(this.translations[this.currentLang].aiWelcomeMessage);
-                }
-                
-                // Load history from localStorage
-                const savedChat = localStorage.getItem('nahnu_chat');
-                if (savedChat) {
-                    this.chatHistory = JSON.parse(savedChat);
-                    
-                    // Add each message from history
-                    this.chatHistory.forEach(entry => {
-                        this.addUserMessage(entry.user);
-                        this.addAIMessage(entry.ai);
-                    });
-                }
-            }
-            
-            showToast(message, type = 'success') {
-                const toastContainer = document.getElementById('toastContainer');
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                toast.innerHTML = `
-                    <i class="fas fa-${this.getToastIcon(type)}"></i>
-                    <span>${message}</span>
-                `;
-                
-                toastContainer.appendChild(toast);
-                
-                // Remove toast after 3 seconds
-                setTimeout(() => {
-                    toast.style.animation = 'toastOut 0.3s ease';
-                    setTimeout(() => {
-                        toast.remove();
-                    }, 300);
-                }, 3000);
-            }
-            
-            getToastIcon(type) {
-                switch(type) {
-                    case 'success': return 'check-circle';
-                    case 'warning': return 'exclamation-triangle';
-                    case 'danger': return 'exclamation-circle';
-                    case 'info': return 'info-circle';
-                    default: return 'info-circle';
-                }
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+        };
+
+        let lang = localStorage.getItem('lang') || 'ar';
+
+        function updateLang() {
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langToggle').innerText = lang === 'ar' ? 'EN' : 'عربي';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) el.innerText = i18n[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (i18n[lang][key]) el.placeholder = i18n[lang][key];
+            });
+        }
+
+        document.getElementById('langToggle').onclick = () => {
+            lang = lang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('lang', lang);
+            updateLang();
+        };
+
+        function show(id) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function openMod(type) {
+            document.getElementById(type === 'privacy' ? 'modPrivacy' : 'modSched').style.display = 'flex';
+        }
+        function closeMod(type) {
+            document.getElementById(type === 'privacy' ? 'modPrivacy' : 'modSched').style.display = 'none';
+        }
+
+        function triggerToast(type) {
+            const t = document.getElementById('toast');
+            t.innerText = i18n[lang]['t-' + type];
+            t.style.display = 'block';
+            closeMod('sched');
+            setTimeout(() => t.style.display = 'none', 3000);
+        }
+
+        // --- AI Logic ---
+        function startAI() {
+            show('page-chat');
+            const stream = document.getElementById('chat-stream');
+            if (stream.children.length === 0) {
+                appendMsg('ai', i18n[lang]['welcome']);
             }
         }
 
-        // Initialize the application when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            window.app = new NahnuMaakApp();
-        });
+        function appendMsg(sender, text) {
+            const stream = document.getElementById('chat-stream');
+            const msg = document.createElement('div');
+            msg.className = `msg ${sender}`;
+            msg.innerText = text;
+            stream.appendChild(msg);
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        document.getElementById('send').onclick = handleChat;
+        document.getElementById('chatIn').onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
+
+        function handleChat() {
+            const input = document.getElementById('chatIn');
+            const val = input.value.trim();
+            if(!val) return;
+            appendMsg('user', val);
+            input.value = '';
+            document.getElementById('typing-ind').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('typing-ind').style.display = 'none';
+                appendMsg('ai', i18n[lang]['ai-res']);
+            }, 1200);
+        }
+
+        // --- Call Logic ---
+        function startCall() {
+            show('page-call');
+            const loader = document.getElementById('call-loader');
+            const txt = document.getElementById('call-txt');
+            const btn = document.getElementById('sched-btn');
+            loader.style.display = 'block';
+            btn.style.display = 'none';
+            txt.innerText = i18n[lang]['connecting'];
+            setTimeout(() => {
+                loader.style.display = 'none';
+                txt.innerText = lang === 'ar' ? "عذراً، لا يوجد مختص متاح حالياً." : "Sorry, no specialist is available right now.";
+                btn.style.display = 'block';
+            }, 4000);
+        }
+
+        updateLang();
     </script>
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
 </body>
 </html>
