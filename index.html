@@ -1,415 +1,973 @@
+```html
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نحن معك | Nahnu Ma'ak - Privacy-First Mental Health Support</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>نحن معك</title>
+    <style>
+        /* styles.css content starts here */
+
+        /* CSS Variables for Colors */
+        :root {
+            --primary-900: #2c0b4e;
+            --primary-800: #3e0f6b;
+            --primary-700: #501388;
+            --primary-600: #6217a5;
+            --primary-500: #741bc2;
+            --primary-400: #863fdf;
+            --primary-300: #9853fc;
+            --primary-200: #ab77fd;
+            --primary-100: #bd9bfe;
+            --primary-50: #cfbff f;
+
+            --secondary-900: #0b2c4e;
+            --secondary-800: #0f3e6b;
+            --secondary-700: #135088;
+            --secondary-600: #1762a5;
+            --secondary-500: #1b74c2;
+            --secondary-400: #1f86df;
+            --secondary-300: #5398fc;
+            --secondary-200: #77abfd;
+            --secondary-100: #9bbdfe;
+            --secondary-50: #bfcff f;
+
+            --accent-700: #880355;
+            --accent-600: #aa0466;
+            --accent-500: #cc0577;
+            --accent-400: #ee0688;
+            --accent-300: #ff3aa4;
+            --accent-200: #ff6ec0;
+            --accent-100: #ffa2dc;
+            --accent-50: #ffd6f8;
+
+            --neutral-900: #0f172a;
+            --neutral-800: #1e293b;
+            --neutral-700: #334155;
+            --neutral-600: #475569;
+            --neutral-500: #64748b;
+            --neutral-400: #94a3b8;
+            --neutral-300: #cbd5e1;
+            --neutral-200: #e2e8f0;
+            --neutral-100: #f1f5f9;
+            --neutral-50: #f8fafc;
+
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+
+            --font-arabic: 'Tajawal', sans-serif;
+            --font-english: 'Inter', sans-serif;
+
+            --h1: 2.5rem;
+            --h2: 2rem;
+            --h3: 1.5rem;
+            --body: 1rem;
+            --caption: 0.875rem;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-arabic);
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 50%, var(--accent-500) 100%);
+            color: var(--neutral-50);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            direction: rtl;
+            font-size: var(--body);
+        }
+
+        body[lang="en"] {
+            font-family: var(--font-english);
+            direction: ltr;
+        }
+
+        /* Subtle Noise Texture */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+            pointer-events: none;
+        }
+
+        /* Vignette */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        /* Glow Blobs */
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+
+        .glow-top-left {
+            top: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-300);
+        }
+
+        .glow-top-right {
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-300);
+        }
+
+        .glow-bottom-center {
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: var(--accent-300);
+        }
+
+        /* App Shell */
+        .app-shell {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(var(--neutral-900-rgb), 0.8); /* Glassmorphism */
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 1px solid var(--neutral-700);
+        }
+
+        .logo {
+            font-size: var(--h2);
+            font-weight: bold;
+        }
+
+        .language-toggle {
+            display: flex;
+            background: var(--neutral-800);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .language-toggle button {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--neutral-100);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .language-toggle button.active {
+            background: var(--primary-500);
+            color: var(--neutral-50);
+        }
+
+        .privacy-badge {
+            background: var(--success);
+            color: var(--neutral-50);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: var(--caption);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            min-height: 44px;
+            font-size: var(--body);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary-500);
+            color: var(--neutral-50);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-500);
+            color: var(--neutral-50);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--neutral-300);
+            color: var(--neutral-100);
+        }
+
+        .btn-destructive {
+            background: var(--danger);
+            color: var(--neutral-50);
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Inputs */
+        input, textarea, select {
+            background: var(--neutral-800);
+            border: 1px solid var(--neutral-700);
+            color: var(--neutral-50);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: var(--body);
+            width: 100%;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 2px rgba(var(--primary-500-rgb), 0.2);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--neutral-900);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--neutral-100);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Toasts */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neutral-800);
+            color: var(--neutral-50);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 30;
+        }
+
+        .toast.active {
+            opacity: 1;
+        }
+
+        /* Status Chips */
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            background: var(--neutral-700);
+            color: var(--neutral-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: var(--caption);
+        }
+
+        .status-chip.online::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--neutral-300);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* Page Transitions */
+        .page {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            padding: 2rem 1rem;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        body[lang="en"] .page {
+            transform: translateX(-20px);
+        }
+
+        body[lang="en"] .page.active {
+            transform: translateX(0);
+        }
+
+        /* Landing Page */
+        #landing {
+            text-align: center;
+        }
+
+        #landing h1 {
+            font-size: var(--h1);
+        }
+
+        .trust-strip {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+        }
+
+        /* Choose Page */
+        #choose .policy-panel {
+            background: var(--neutral-800);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .selection-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .selection-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Chat Page */
+        #chat {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 60px); /* Adjust for top bar */
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--neutral-700);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .message.user {
+            background: var(--primary-500);
+            align-self: flex-end;
+        }
+
+        .message.ai {
+            background: var(--neutral-700);
+            align-self: flex-start;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid var(--neutral-700);
+        }
+
+        .chat-input input {
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+
+        body[dir="ltr"] .chat-input input {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+
+        .chat-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-top: 1px solid var(--neutral-700);
+        }
+
+        .disclaimer {
+            font-size: var(--caption);
+            color: var(--neutral-300);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Call Page */
+        #call {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .call-status {
+            font-size: var(--h2);
+            margin-bottom: 2rem;
+        }
+
+        .call-avatar {
+            width: 150px;
+            height: 150px;
+            background: var(--neutral-700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .call-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Accessibility */
+        button:focus, input:focus {
+            outline: 2px solid var(--primary-500);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .page {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .page {
+                padding: 4rem 3rem;
+            }
+        }
+
+        /* Scroll Hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* styles.css content ends here */
+    </style>
 </head>
 <body>
-    <!-- App Container -->
-    <div class="app-container" id="appContainer">
-        <!-- Top Navigation Bar -->
-        <nav class="top-nav" id="topNav">
-            <div class="nav-content">
-                <div class="logo-section">
-                    <h1 class="logo" id="logoText">نحن معك</h1>
-                    <span class="logo-subtitle" id="logoSubtitle">Nahnu Ma'ak</span>
-                </div>
-                
-                <div class="nav-controls">
-                    <div class="privacy-badge" id="privacyBadge">
-                        <i class="fas fa-user-secret"></i>
-                        <span id="privacyBadgeText">Anonymous</span>
-                    </div>
-                    
-                    <div class="language-toggle" id="languageToggle">
-                        <button class="lang-btn active" data-lang="ar">AR</button>
-                        <button class="lang-btn" data-lang="en">EN</button>
-                    </div>
-                </div>
+    <div class="glow-blob glow-top-left"></div>
+    <div class="glow-blob glow-top-right"></div>
+    <div class="glow-blob glow-bottom-center"></div>
+
+    <div class="app-shell">
+        <div class="top-bar">
+            <div class="logo">نحن معك</div>
+            <div class="language-toggle">
+                <button id="lang-ar" class="active">AR</button>
+                <button id="lang-en">EN</button>
             </div>
-        </nav>
+            <div class="privacy-badge">🔒 خصوصية</div>
+        </div>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Page A: Landing -->
-            <section class="page active" id="pageLanding">
-                <div class="landing-container">
-                    <div class="landing-hero">
-                        <h1 class="hero-title" id="heroTitle">خصوصيتك أولاً.<br>خذ الخطوة الأولى بثقة.</h1>
-                        <p class="hero-subtitle" id="heroSubtitle">Privacy first. Take the first step with confidence.</p>
-                        
-                        <div class="trust-strip">
-                            <div class="trust-badge">
-                                <i class="fas fa-ban"></i>
-                                <span id="trustBadge1">بدون اسم</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i class="fas fa-mask"></i>
-                                <span id="trustBadge2">هوية مخفية</span>
-                            </div>
-                            <div class="trust-badge">
-                                <i class="fas fa-shield-alt"></i>
-                                <span id="trustBadge3">دعم آمن</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="landing-actions">
-                        <button class="btn btn-primary btn-large" id="startButton">
-                            <span id="startButtonText">ابدأ الآن</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                        
-                        <button class="btn btn-ghost" id="privacyInfoButton">
-                            <i class="fas fa-lock"></i>
-                            <span id="privacyInfoText">كيف نحمي خصوصيتك؟</span>
-                        </button>
-                    </div>
-                    
-                    <div class="scroll-hint">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-            </section>
+        <!-- Pages -->
+        <div id="landing" class="page active">
+            <h1 data-ar="نحن معك" data-en="Nahnu Ma’ak"></h1>
+            <p data-ar="خصوصيتك أولاً. خذ الخطوة الأولى بثقة." data-en="Privacy first. Take the first step with confidence."></p>
+            <div class="trust-strip">
+                <div class="trust-badge" data-ar="بدون اسم" data-en="No name required"></div>
+                <div class="trust-badge" data-ar="هوية مخفية" data-en="Anonymous by design"></div>
+                <div class="trust-badge" data-ar="دعم آمن" data-en="Safe support"></div>
+            </div>
+            <button class="btn btn-primary" id="start-btn" aria-label="Start now" data-ar="ابدأ الآن" data-en="Start now"></button>
+            <button class="btn btn-ghost" id="privacy-link" data-ar="كيف نحمي خصوصيتك؟" data-en="How we protect your privacy?"></button>
+            <div class="scroll-hint">↓</div>
+        </div>
 
-            <!-- Page B: Privacy + Choose -->
-            <section class="page" id="pageChoose">
-                <div class="choose-container">
-                    <button class="btn-back" id="backToLanding">
-                        <i class="fas fa-arrow-left"></i>
-                        <span id="backButtonText">الرجوع</span>
-                    </button>
-                    
-                    <div class="privacy-panel">
-                        <div class="privacy-header">
-                            <i class="fas fa-user-shield"></i>
-                            <h3 id="privacyTitle">كل ما تكتبه هنا خاص. لا نشارك بياناتك إلا بإذنك.</h3>
-                        </div>
-                        <p class="privacy-subtitle" id="privacySubtitle">يمكنك المتابعة بدون اسم. والتحويل لمختص يبقى بدون كشف الهوية.</p>
-                    </div>
-                    
-                    <h2 class="section-title" id="chooseTitle">اختر طريقة الدعم</h2>
-                    
-                    <div class="cards-container">
-                        <!-- AI Support Card -->
-                        <div class="selection-card" id="aiCard">
-                            <div class="card-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3 class="card-title" id="aiCardTitle">التواصل مع الذكاء الاصطناعي</h3>
-                            <p class="card-subtitle" id="aiCardSubtitle">دعم مبدئي بسرّية + أسئلة منظمة تساعدك تفهم مشاعرك.</p>
-                            
-                            <div class="card-features">
-                                <div class="feature">
-                                    <i class="fas fa-bolt"></i>
-                                    <span id="aiFeature1">إجابة فورية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-list-check"></i>
-                                    <span id="aiFeature2">أسئلة منظمة</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-user-md"></i>
-                                    <span id="aiFeature3">تحويل لمختص</span>
-                                </div>
-                            </div>
-                            
-                            <div class="card-action">
-                                <button class="btn btn-secondary btn-block" id="startAiButton">
-                                    <span id="startAiText">ابدأ المحادثة</span>
-                                    <i class="fas fa-comment"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Specialist Card -->
-                        <div class="selection-card" id="specialistCard">
-                            <div class="card-icon">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                            <h3 class="card-title" id="specialistCardTitle">التواصل مع مختص حقيقي</h3>
-                            <p class="card-subtitle" id="specialistCardSubtitle">واجهة اتصال للعرض — بدون اتصال فعلي.</p>
-                            
-                            <div class="card-features">
-                                <div class="feature">
-                                    <i class="fas fa-mask"></i>
-                                    <span id="specialistFeature1">بدون كشف الهوية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-phone-alt"></i>
-                                    <span id="specialistFeature2">تجربة مكالمة رسمية</span>
-                                </div>
-                                <div class="feature">
-                                    <i class="fas fa-calendar-check"></i>
-                                    <span id="specialistFeature3">طلب موعد (نموذج)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="card-action">
-                                <button class="btn btn-primary btn-block" id="startSpecialistButton">
-                                    <span id="startSpecialistText">بدء المكالمة التجريبية</span>
-                                    <i class="fas fa-phone"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page C: AI Chat -->
-            <section class="page" id="pageChat">
-                <div class="chat-container">
-                    <!-- Chat Header -->
-                    <div class="chat-header">
-                        <button class="btn-back" id="backToChoose">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        
-                        <div class="chat-header-info">
-                            <h2 class="chat-title" id="chatTitle">محادثة مع الذكاء الاصطناعي</h2>
-                            <div class="status-chips">
-                                <div class="status-chip anonymous">
-                                    <i class="fas fa-user-secret"></i>
-                                    <span id="anonymousChipText">مجهول</span>
-                                </div>
-                                <div class="status-chip online">
-                                    <div class="online-dot"></div>
-                                    <span id="onlineChipText">متصل</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-header-actions">
-                            <button class="btn-icon" id="saveChatButton" title="Save conversation">
-                                <i class="fas fa-save"></i>
-                            </button>
-                            <button class="btn-icon" id="clearChatButton" title="Clear conversation">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Chat Messages Area -->
-                    <div class="chat-messages" id="chatMessages">
-                        <!-- AI Welcome Message -->
-                        <div class="message ai-message">
-                            <div class="message-avatar">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="message-content">
-                                <p id="aiWelcomeMessage">نحن معك. أخبرنا بما تشعر به الآن.</p>
-                                <div class="message-time">الآن</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Chat Input Area -->
-                    <div class="chat-input-container">
-                        <div class="chat-input-wrapper">
-                            <input type="text" 
-                                   class="chat-input" 
-                                   id="chatInput"
-                                   placeholder="اكتب رسالتك هنا..."
-                                   autocomplete="off">
-                            <button class="btn-send" id="sendMessageButton">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="chat-controls">
-                            <button class="btn btn-secondary" id="switchToSpecialistButton">
-                                <i class="fas fa-user-md"></i>
-                                <span id="switchToSpecialistText">التحويل إلى مختص</span>
-                            </button>
-                            
-                            <div class="chat-disclaimer">
-                                <i class="fas fa-exclamation-circle"></i>
-                                <p id="chatDisclaimer">هذه نسخة أولية ولا تغني عن الاستشارة الطبية. في الحالات الطارئة تواصل مع الجهات المختصة.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page D: Call Prototype -->
-            <section class="page" id="pageCall">
-                <div class="call-container">
-                    <!-- Call Header -->
-                    <div class="call-header">
-                        <button class="btn-back" id="backToChooseFromCall">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        
-                        <div class="call-header-info">
-                            <div class="call-title">
-                                <i class="fas fa-user-secret"></i>
-                                <h2 id="callTitle">مكالمة مجهولة</h2>
-                            </div>
-                            <div class="call-status" id="callStatus">
-                                <div class="connecting-dots">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <span id="statusText">جارِ الاتصال...</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Call Stage -->
-                    <div class="call-stage">
-                        <div class="video-tile">
-                            <div class="video-placeholder">
-                                <div class="specialist-avatar">
-                                    <i class="fas fa-user-md"></i>
-                                </div>
-                                <div class="specialist-info">
-                                    <h3 id="specialistName">أخصائي (تجريبي)</h3>
-                                    <p id="specialistRole">استشاري صحة نفسية</p>
-                                </div>
-                            </div>
-                            
-                            <div class="video-overlay">
-                                <div class="no-specialist-message" id="noSpecialistMessage">
-                                    <i class="fas fa-calendar-times"></i>
-                                    <h3 id="noSpecialistTitle">لا يوجد أخصائي متاح حاليًا — هذا مجرد عرض تجريبي</h3>
-                                    <p id="noSpecialistSubtitle">يمكنك طلب موعد وسنتواصل معك خلال 24 ساعة</p>
-                                    <button class="btn btn-primary btn-large" id="scheduleRequestButton">
-                                        <i class="fas fa-calendar-plus"></i>
-                                        <span id="scheduleRequestText">طلب موعد (تجريبي)</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Call Controls -->
-                    <div class="call-controls">
-                        <div class="control-group">
-                            <button class="call-control-btn" id="micButton">
-                                <i class="fas fa-microphone"></i>
-                                <span id="micLabel">ميكروفون</span>
-                            </button>
-                            <button class="call-control-btn" id="cameraButton">
-                                <i class="fas fa-video"></i>
-                                <span id="cameraLabel">كاميرا</span>
-                            </button>
-                            <button class="call-control-btn" id="captionButton">
-                                <i class="fas fa-closed-captioning"></i>
-                                <span id="captionLabel">ترجمة</span>
-                            </button>
-                        </div>
-                        
-                        <button class="call-control-btn destructive" id="endCallButton">
-                            <i class="fas fa-phone-slash"></i>
-                            <span id="endCallLabel">إنهاء المكالمة</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Modals -->
-        <div class="modal-overlay" id="modalOverlay">
-            <!-- Privacy Modal -->
-            <div class="modal" id="privacyModal">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="privacyModalTitle">كيف نحمي خصوصيتك</h3>
-                    <button class="modal-close" id="closePrivacyModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="privacy-list">
-                        <li>
-                            <i class="fas fa-user-secret"></i>
-                            <span id="privacyPoint1">جلسات مجهولة الهوية بشكل افتراضي</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-ban"></i>
-                            <span id="privacyPoint2">لا نطلب اسمك الحقيقي</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-database"></i>
-                            <span id="privacyPoint3">التخزين المحلي فقط (لا توجد خوادم)</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-shield-alt"></i>
-                            <span id="privacyPoint4">لا نشارك بياناتك دون إذنك</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-trash-alt"></i>
-                            <span id="privacyPoint5">يمكنك حذف جلستك في أي وقت</span>
-                        </li>
+        <div id="choose" class="page">
+            <button class="btn btn-ghost" id="back-to-landing" data-ar="عودة" data-en="Back"></button>
+            <div class="policy-panel">
+                <p data-ar="كل ما تكتبه هنا خاص. لا نشارك بياناتك إلا بإذنك." data-en="Everything you share is private. We don’t share data without your permission."></p>
+                <p data-ar="يمكنك المتابعة بدون اسم. والتحويل لمختص يبقى بدون كشف الهوية." data-en="Continue without a name. Switching to a specialist stays anonymous."></p>
+            </div>
+            <div class="selection-cards">
+                <div class="card" id="ai-card">
+                    <h3 data-ar="التواصل مع الذكاء الاصطناعي" data-en="Talk to AI Support"></h3>
+                    <p data-ar="دعم مبدئي بسرّية + أسئلة منظمة تساعدك تفهم مشاعرك." data-en="Private first-step support + structured questions to help you reflect."></p>
+                    <ul>
+                        <li data-ar="إجابة فورية" data-en="Instant response"></li>
+                        <li data-ar="أسئلة منظمة" data-en="Structured prompts"></li>
+                        <li data-ar="تحويل لمختص" data-en="Switch to specialist"></li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="privacyModalCloseButton">
-                        <span id="privacyModalCloseText">فهمت</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Schedule Modal -->
-            <div class="modal" id="scheduleModal">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="scheduleModalTitle">طلب موعد مع مختص</h3>
-                    <button class="modal-close" id="closeScheduleModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="scheduleForm">
-                        <div class="form-group">
-                            <label for="preferredTime" id="timeLabel">الوقت المفضل</label>
-                            <select class="form-select" id="preferredTime">
-                                <option value="" id="timePlaceholder">اختر وقتًا...</option>
-                                <option value="morning" id="morningOption">صباحًا (9 ص - 12 م)</option>
-                                <option value="afternoon" id="afternoonOption">بعد الظهر (12 م - 4 م)</option>
-                                <option value="evening" id="eveningOption">مساءً (4 م - 8 م)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="concernType" id="concernLabel">نوع الاستشارة</label>
-                            <select class="form-select" id="concernType">
-                                <option value="" id="concernPlaceholder">اختر نوعًا...</option>
-                                <option value="mental" id="mentalOption">دعم نفسي</option>
-                                <option value="medical" id="medicalOption">استشارة طبية</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="concernNote" id="noteLabel">ملاحظات إضافية (اختياري)</label>
-                            <textarea class="form-textarea" 
-                                      id="concernNote" 
-                                      rows="3"
-                                      placeholder="اكتب ملاحظاتك هنا..."></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" id="cancelScheduleButton">
-                        <span id="cancelScheduleText">إلغاء</span>
-                    </button>
-                    <button class="btn btn-primary" id="submitScheduleButton">
-                        <i class="fas fa-paper-plane"></i>
-                        <span id="submitScheduleText">إرسال الطلب</span>
-                    </button>
+                <div class="card" id="specialist-card">
+                    <h3 data-ar="التواصل مع مختص حقيقي" data-en="Talk to a Real Specialist"></h3>
+                    <p data-ar="واجهة اتصال للعرض — بدون اتصال فعلي." data-en="Call UI demo — no real connection."></p>
+                    <ul>
+                        <li data-ar="بدون كشف الهوية" data-en="Anonymous"></li>
+                        <li data-ar="تجربة مكالمة رسمية" data-en="Official call experience"></li>
+                        <li data-ar="طلب موعد (نموذج)" data-en="Schedule request (demo)"></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Toast Notifications -->
-        <div class="toast-container" id="toastContainer"></div>
+        <div id="chat" class="page">
+            <div class="chat-header">
+                <button class="btn btn-ghost" id="back-to-choose" data-ar="عودة" data-en="Back"></button>
+                <h3 data-ar="دردشة الذكاء الاصطناعي" data-en="AI Chat"></h3>
+                <div class="status-chip" data-ar="مجهول" data-en="Anonymous">🔒</div>
+                <div class="status-chip online" data-ar="متصل" data-en="Online"></div>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="اكتب رسالتك..." data-ar-placeholder="اكتب رسالتك..." data-en-placeholder="Type your message...">
+                <button class="btn btn-primary" id="send-btn" data-ar="إرسال" data-en="Send"></button>
+            </div>
+            <div class="chat-controls">
+                <button class="btn btn-secondary" id="switch-to-specialist" data-ar="التحويل إلى مختص" data-en="Switch to Specialist"></button>
+                <button class="btn btn-ghost" id="save-session" data-ar="حفظ الجلسة" data-en="Save session"></button>
+                <button class="btn btn-destructive" id="clear-session" data-ar="مسح الجلسة" data-en="Clear session"></button>
+            </div>
+            <p class="disclaimer" data-ar="هذه نسخة أولية ولا تغني عن الاستشارة الطبية. في الحالات الطارئة تواصل مع الجهات المختصة." data-en="Prototype only. Not medical advice. In emergencies, contact local services."></p>
+        </div>
+
+        <div id="call" class="page">
+            <div class="call-status" id="call-status" data-ar="جاري الاتصال..." data-en="Connecting..."></div>
+            <div class="call-avatar">Specialist</div>
+            <p id="call-message"></p>
+            <button class="btn btn-primary" id="schedule-btn" style="display: none;" data-ar="طلب موعد (نموذج)" data-en="Schedule request (demo)"></button>
+            <div class="call-controls">
+                <button class="btn btn-ghost">Mic</button>
+                <button class="btn btn-ghost">Camera</button>
+                <button class="btn btn-ghost">Captions</button>
+                <button class="btn btn-destructive" id="end-call" data-ar="إنهاء" data-en="End"></button>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="privacy-modal" class="modal-overlay">
+            <div class="modal">
+                <button class="modal-close">×</button>
+                <h3 data-ar="كيف نحمي خصوصيتك" data-en="How we protect your privacy"></h3>
+                <ul>
+                    <li data-ar="جلسة مجهولة افتراضياً" data-en="Anonymous session by default"></li>
+                    <li data-ar="لا يتطلب اسم حقيقي" data-en="No real name required"></li>
+                    <li data-ar="تخزين محلي فقط للنموذج" data-en="Local-only prototype storage"></li>
+                    <li data-ar="البيانات لا تُشارك بدون إذن" data-en="Data is not shared without permission"></li>
+                    <li data-ar="يمكنك حذف جلسك في أي وقت" data-en="You can delete your session anytime"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="schedule-modal" class="modal-overlay">
+            <div class="modal">
+                <button class="modal-close">×</button>
+                <h3 data-ar="طلب موعد" data-en="Schedule Request"></h3>
+                <form>
+                    <label data-ar="الوقت المفضل" data-en="Preferred Time">
+                        <select>
+                            <option data-ar="صباحاً" data-en="Morning"></option>
+                            <option data-ar="مساءً" data-en="Evening"></option>
+                        </select>
+                    </label>
+                    <label data-ar="نوع الاهتمام" data-en="Concern Type">
+                        <select>
+                            <option data-ar="نفسي" data-en="Mental"></option>
+                            <option data-ar="طبي" data-en="Medical"></option>
+                        </select>
+                    </label>
+                    <label data-ar="ملاحظة قصيرة" data-en="Short Note">
+                        <textarea></textarea>
+                    </label>
+                    <button type="button" class="btn btn-primary" id="submit-schedule" data-ar="إرسال" data-en="Submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast"></div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        // app.js content starts here
+
+        // Translations
+        const translations = {
+            ar: {
+                logo: 'نحن معك',
+                privacyBadge: '🔒 خصوصية',
+                // Add all data-ar texts here if needed, but since we use data attributes, it's handled in HTML
+            },
+            en: {
+                logo: 'Nahnu Ma’ak',
+                privacyBadge: '🔒 Privacy',
+            }
+        };
+
+        // Current language
+        let lang = localStorage.getItem('lang') || 'ar';
+        document.documentElement.lang = lang;
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.lang = lang;
+
+        // Language toggle
+        document.getElementById('lang-ar').addEventListener('click', () => setLanguage('ar'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+        function setLanguage(newLang) {
+            lang = newLang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.lang = lang;
+
+            // Update toggles
+            document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+
+            // Update all texts
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+                if (el.placeholder !== undefined) {
+                    el.placeholder = el.getAttribute(`data-${lang}-placeholder`) || el.placeholder;
+                }
+            });
+
+            // Update logo and badge
+            document.querySelector('.logo').textContent = translations[lang].logo;
+            document.querySelector('.privacy-badge').textContent = translations[lang].privacyBadge;
+        }
+
+        setLanguage(lang);
+
+        // Pages
+        const pages = {
+            landing: document.getElementById('landing'),
+            choose: document.getElementById('choose'),
+            chat: document.getElementById('chat'),
+            call: document.getElementById('call')
+        };
+
+        let currentPage = 'landing';
+
+        function navigateTo(page) {
+            pages[currentPage].classList.remove('active');
+            pages[page].classList.add('active');
+            currentPage = page;
+        }
+
+        // Landing interactions
+        document.getElementById('start-btn').addEventListener('click', () => navigateTo('choose'));
+        document.getElementById('privacy-link').addEventListener('click', () => showModal('privacy-modal'));
+
+        // Choose interactions
+        document.getElementById('back-to-landing').addEventListener('click', () => navigateTo('landing'));
+        document.getElementById('ai-card').addEventListener('click', () => {
+            navigateTo('chat');
+            initChat();
+        });
+        document.getElementById('specialist-card').addEventListener('click', () => {
+            navigateTo('call');
+            initCall();
+        });
+
+        // Chat interactions
+        let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function initChat() {
+            chatMessages.innerHTML = '';
+            renderChat();
+            if (chatHistory.length === 0) {
+                addAIMessage(lang === 'ar' ? 'نحن معك. أخبرنا بما تشعر به الآن.' : 'We’re with you. Tell us what you’re feeling right now.');
+            }
+        }
+
+        function renderChat() {
+            chatMessages.innerHTML = '';
+            chatHistory.forEach(msg => {
+                addMessage(msg.type, msg.text, false);
+            });
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addMessage(type, text, save = true) {
+            const div = document.createElement('div');
+            div.classList.add('message', type);
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            if (save) {
+                chatHistory.push({ type, text });
+                localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+            }
+        }
+
+        function addAIMessage(text) {
+            addMessage('ai', text);
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.classList.add('message', 'ai', 'typing-indicator');
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typing);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typing;
+        }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            addMessage('user', text);
+            chatInput.value = '';
+            const typing = showTyping();
+            setTimeout(() => {
+                typing.remove();
+                const reply = getAIReply(text);
+                addAIMessage(reply);
+            }, Math.random() * 600 + 600);
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function getAIReply(userText) {
+            const lower = userText.toLowerCase();
+            const keywords = {
+                ar: {
+                    قلق: 'أشعر بقلقك. هل يمكنك وصف ما يقلقك أكثر؟',
+                    حزن: 'الحزن طبيعي. ما الذي يجعلك تشعر بهذا؟',
+                    اكتئاب: 'الاكتئاب صعب. هل جربت التحدث مع مختص؟',
+                    نوم: 'مشاكل النوم شائعة. ما هي عادات نومك؟',
+                    ألم: 'الألم يحتاج رعاية. هل هو جسدي أم نفسي؟',
+                    ضغط: 'الضغط يؤثر علينا. هل تريد نصائح للتعامل معه؟',
+                    'أحتاج طبيب': 'يمكنك التحويل إلى مختص الآن.'
+                },
+                en: {
+                    anxiety: 'I sense your anxiety. Can you describe what\'s worrying you most?',
+                    sadness: 'Sadness is normal. What\'s making you feel this way?',
+                    depression: 'Depression is tough. Have you tried speaking to a specialist?',
+                    sleep: 'Sleep issues are common. What are your sleep habits?',
+                    pain: 'Pain needs care. Is it physical or emotional?',
+                    stress: 'Stress affects us all. Want tips to manage it?',
+                    'i want a doctor': 'You can switch to a specialist now.'
+                }
+            };
+
+            const langKeywords = keywords[lang];
+            for (const key in langKeywords) {
+                if (lower.includes(key)) {
+                    return langKeywords[key];
+                }
+            }
+            return lang === 'ar' ? 'أخبرني المزيد.' : 'Tell me more.';
+        }
+
+        document.getElementById('back-to-choose').addEventListener('click', () => navigateTo('choose'));
+        document.getElementById('switch-to-specialist').addEventListener('click', () => {
+            navigateTo('call');
+            initCall();
+        });
+        document.getElementById('save-session').addEventListener('click', () => showToast(lang === 'ar' ? 'تم الحفظ محلياً' : 'Saved locally'));
+        document.getElementById('clear-session').addEventListener('click', () => {
+            chatHistory = [];
+            localStorage.removeItem('chatHistory');
+            renderChat();
+            showToast(lang === 'ar' ? 'تم المسح' : 'Cleared');
+        });
+
+        // Call interactions
+        function initCall() {
+            const status = document.getElementById('call-status');
+            const message = document.getElementById('call-message');
+            const scheduleBtn = document.getElementById('schedule-btn');
+            status.textContent = lang === 'ar' ? 'جاري الاتصال...' : 'Connecting...';
+            message.textContent = '';
+            scheduleBtn.style.display = 'none';
+
+            setTimeout(() => {
+                status.textContent = lang === 'ar' ? 'لا يوجد مختص متاح — نموذج عرض فقط' : 'No specialist available — demo only';
+                scheduleBtn.style.display = 'block';
+            }, Math.random() * 2000 + 3000);
+        }
+
+        document.getElementById('end-call').addEventListener('click', () => navigateTo('choose'));
+        document.getElementById('schedule-btn').addEventListener('click', () => showModal('schedule-modal'));
+
+        // Schedule submit
+        document.getElementById('submit-schedule').addEventListener('click', () => {
+            hideModal('schedule-modal');
+            showToast(lang === 'ar' ? 'تم إرسال الطلب' : 'Request sent');
+        });
+
+        // Modals
+        function showModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('active');
+            modal.addEventListener('click', outsideClick);
+            document.addEventListener('keydown', escClose);
+        }
+
+        function hideModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('active');
+            modal.removeEventListener('click', outsideClick);
+            document.removeEventListener('keydown', escClose);
+        }
+
+        function outsideClick(e) {
+            if (e.target.classList.contains('modal-overlay')) hideModal(e.target.id);
+        }
+
+        function escClose(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => hideModal(m.id));
+            }
+        }
+
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', () => hideModal(btn.closest('.modal-overlay').id));
+        });
+
+        // Toast
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.textContent = text;
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 3000);
+        }
+
+        // app.js content ends here
+    </script>
 </body>
 </html>
+```
